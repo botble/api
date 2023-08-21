@@ -9,6 +9,9 @@ use Botble\Base\Supports\ServiceProvider;
 use Botble\Base\Traits\LoadAndPublishDataTrait;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Routing\Events\RouteMatched;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
+use ReflectionClass;
 
 class ApiServiceProvider extends ServiceProvider
 {
@@ -60,5 +63,10 @@ class ApiServiceProvider extends ServiceProvider
                 ],
             ]);
         });
+    }
+
+    protected function getPath(string $path = null): string
+    {
+        return __DIR__ . '/../..' . ($path ? '/' . ltrim($path, '/') : '');
     }
 }

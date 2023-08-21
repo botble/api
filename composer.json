@@ -1,13 +1,33 @@
 {
     "name": "botble/api",
-    "description": "API package",
+    "description": "API package for Botble CMS",
     "type": "package",
+    "license": "MIT",
+    "keywords": [
+        "botble",
+        "botble cms",
+        "botble platform",
+        "botble api"
+    ],
+    "homepage": "https://botble.com",
+    "authors": [
+        {
+            "name": "Botble Technologies",
+            "email": "contact@botble.com"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Botble\\Api\\": "src"
         }
     },
-    "require": {},
+    "require": {
+
+    },
+    "require-dev": {
+        "laravel/pint": "^1.4.0",
+        "phpunit/phpunit": "^9.0|^10.0"
+    },
     "extra": {
         "laravel": {
             "providers": [
@@ -17,5 +37,9 @@
                 "ApiHelper": "Botble\\Api\\Facades\\ApiHelper"
             }
         }
-    }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable"
 }
