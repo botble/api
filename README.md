@@ -1,10 +1,10 @@
 # API for Botble CMS
 
 <p align="center">
-    <a href="https://packagist.org/packages/botble/api"><img src="https://img.shields.io/packagist/v/botble/api.svg?style=flat-square" alt="Latest V$
+    <a href="https://packagist.org/packages/botble/api"><img src="https://img.shields.io/packagist/v/botble/api.svg?style=flat-square" alt="Latest Version"></a>
     <a href="/LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square" alt="Software License"></a>
-    <a href="https://packagist.org/packages/botble/api"><img src="https://img.shields.io/packagist/dt/botble/api.svg?style=flat-square" alt="Total D$
-    <a href="https://codeclimate.com/github/botble/api/maintainability"><img src="https://api.codeclimate.com/v1/badges/a6e4612307e3b3bf8252/maintainabil$
+    <a href="https://packagist.org/packages/botble/api"><img src="https://img.shields.io/packagist/dt/botble/api.svg?style=flat-square" alt="Total Downloads"></a>
+    <a href="https://codeclimate.com/github/botble/api/maintainability"><img src="https://api.codeclimate.com/v1/badges/a6e4612307e3b3bf8252/maintainability" alt="Maintainability"></a>
 </p>
 
 ## Installation
