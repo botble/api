@@ -17,15 +17,13 @@
         </x-core-setting::section>
 
         <x-core-setting::section.action>
-            <div class="btn-list">
-                <x-core::button
-                    type="submit"
-                    color="primary"
-                    icon="ti ti-device-floppy"
-                >
-                    {{ trans('packages/api::api.save_settings') }}
-                </x-core::button>
-            </div>
+            <x-core::button
+                type="submit"
+                color="primary"
+                icon="ti ti-device-floppy"
+            >
+                {{ trans('packages/api::api.save_settings') }}
+            </x-core::button>
         </x-core-setting::section.action>
     </x-core::form>
 @endsection
