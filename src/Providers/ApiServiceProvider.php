@@ -46,16 +46,6 @@ class ApiServiceProvider extends ServiceProvider
                 $this->app['router']->pushMiddlewareToGroup('api', ForceJsonResponseMiddleware::class);
             }
 
-            DashboardMenu::registerItem([
-                'id' => 'cms-packages-api',
-                'priority' => 9999,
-                'parent_id' => 'cms-core-settings',
-                'name' => 'packages/api::api.settings',
-                'icon' => null,
-                'url' => route('api.settings'),
-                'permissions' => ['api.settings'],
-            ]);
-
             PanelSectionManager::default()
                 ->registerItem(
                     SettingCommonPanelSection::class,
