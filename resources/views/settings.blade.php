@@ -1,25 +1,29 @@
 @extends(BaseHelper::getAdminMasterLayoutTemplate())
 
 @section('content')
-    <div class="max-width-1200">
-        {!! Form::open(['route' => ['api.settings.update']]) !!}
-            <x-core-setting::section
-                :title="trans('packages/api::api.setting_title')"
-                :description="trans('packages/api::api.setting_description')"
-            >
-                <x-core-setting::on-off
-                    name="api_enabled"
-                    :label="trans('packages/api::api.api_enabled')"
-                    :value="ApiHelper::enabled()"
-                />
-            </x-core-setting::section>
+    <x-core::form
+        :url="route('api.settings.update')"
+        method="post"
+    >
+        <x-core-setting::section
+            :title="trans('packages/api::api.setting_title')"
+            :description="trans('packages/api::api.setting_description')"
+        >
+            <x-core::form.on-off.checkbox
+                name="api_enabled"
+                :label="trans('packages/api::api.api_enabled')"
+                :checked="ApiHelper::enabled()"
+            />
+        </x-core-setting::section>
 
-            <div class="flexbox-annotated-section" style="border: none">
-                <div class="flexbox-annotated-section-annotation">&nbsp;</div>
-                <div class="flexbox-annotated-section-content">
-                    <button class="btn btn-info" type="submit">{{ trans('packages/api::api.save_settings') }}</button>
-                </div>
-            </div>
-        {!! Form::close() !!}
-    </div>
+        <x-core-setting::section.action>
+            <x-core::button
+                type="submit"
+                color="primary"
+                icon="ti ti-device-floppy"
+            >
+                {{ trans('packages/api::api.save_settings') }}
+            </x-core::button>
+        </x-core-setting::section.action>
+    </x-core::form>
 @endsection

@@ -22,7 +22,7 @@
         }
     },
     "require": {
-
+        "laravel/framework": "^10.0"
     },
     "require-dev": {
         "knuckleswtf/scribe": "^4.22",
