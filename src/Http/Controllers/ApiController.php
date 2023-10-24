@@ -17,7 +17,11 @@ class ApiController extends Controller
         Assets::addScriptsDirectly('vendor/core/core/setting/js/setting.js');
         Assets::addStylesDirectly('vendor/core/core/setting/css/setting.css');
 
-        return view('packages/api::settings');
+        if (version_compare('7.0.0', get_core_version(), '>=')) {
+            return view('packages/api::settings');
+        }
+
+        return view('packages/api::settings-v6');
     }
 
     public function storeSettings(ApiSettingRequest $request, BaseHttpResponse $response)
