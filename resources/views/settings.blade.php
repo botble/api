@@ -13,6 +13,7 @@
                 name="api_enabled"
                 :label="trans('packages/api::api.api_enabled')"
                 :checked="ApiHelper::enabled()"
+                :wrapper="false"
             />
         </x-core-setting::section>
 
