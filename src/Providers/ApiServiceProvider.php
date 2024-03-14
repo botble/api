@@ -4,6 +4,7 @@ namespace Botble\Api\Providers;
 
 use Botble\Api\Facades\ApiHelper;
 use Botble\Api\Http\Middleware\ForceJsonResponseMiddleware;
+use Botble\Api\Models\PersonalAccessToken;
 use Botble\Base\Facades\DashboardMenu;
 use Botble\Base\Facades\PanelSectionManager;
 use Botble\Base\PanelSections\PanelSectionItem;
@@ -12,9 +13,7 @@ use Botble\Base\Traits\LoadAndPublishDataTrait;
 use Botble\Setting\PanelSections\SettingCommonPanelSection;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Routing\Events\RouteMatched;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Str;
-use ReflectionClass;
+use Laravel\Sanctum\Sanctum;
 
 class ApiServiceProvider extends ServiceProvider
 {
@@ -35,11 +34,25 @@ class ApiServiceProvider extends ServiceProvider
             ->loadAndPublishConfigurations(['api', 'permissions'])
             ->loadAndPublishTranslations()
             ->loadMigrations()
+            ->loadHelpers()
             ->loadAndPublishViews();
 
         if (ApiHelper::enabled()) {
             $this->loadRoutes(['api']);
         }
+
+        Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
+
+        DashboardMenu::default()->beforeRetrieving(function () {
+            DashboardMenu::make()
+                ->registerItem([
+                    'id' => 'cms-plugins-sanctum-token',
+                    'name' => trans('packages/api::sanctum-token.name'),
+                    'icon' => 'ti ti-key',
+                    'url' => route('api.sanctum-token.index'),
+                    'permissions' => ['api.sanctum-token.index'],
+                ]);
+        });
 
         $this->app['events']->listen(RouteMatched::class, function () {
             if (ApiHelper::enabled()) {
@@ -81,7 +94,7 @@ class ApiServiceProvider extends ServiceProvider
         });
     }
 
-    protected function getPath(string $path = null): string
+    protected function getPath(?string $path = null): string
     {
         return __DIR__ . '/../..' . ($path ? '/' . ltrim($path, '/') : '');
     }

@@ -7,16 +7,15 @@ use Botble\Base\Facades\Assets;
 use Botble\Base\Facades\PageTitle;
 use Botble\Base\Http\Controllers\BaseController;
 use Botble\Base\Http\Responses\BaseHttpResponse;
-use Botble\Base\Supports\Breadcrumb;
 
 class ApiController extends BaseController
 {
-    public function settings()
+    public function edit()
     {
         PageTitle::setTitle(trans('packages/api::api.settings'));
 
-        Assets::addScriptsDirectly('vendor/core/core/setting/js/setting.js');
-        Assets::addStylesDirectly('vendor/core/core/setting/css/setting.css');
+        Assets::addScriptsDirectly('vendor/core/core/setting/js/setting.js')
+            ->addStylesDirectly('vendor/core/core/setting/css/setting.css');
 
         if (version_compare('7.0.0', get_core_version(), '>')) {
             return view('packages/api::settings-v6');
@@ -29,7 +28,7 @@ class ApiController extends BaseController
         return view('packages/api::settings');
     }
 
-    public function storeSettings(ApiSettingRequest $request, BaseHttpResponse $response)
+    public function update(ApiSettingRequest $request, BaseHttpResponse $response)
     {
         $this->saveSettings($request->validated());
 
