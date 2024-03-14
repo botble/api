@@ -34,7 +34,6 @@ class ApiServiceProvider extends ServiceProvider
             ->loadAndPublishConfigurations(['api', 'permissions'])
             ->loadAndPublishTranslations()
             ->loadMigrations()
-            ->loadHelpers()
             ->loadAndPublishViews();
 
         if (ApiHelper::enabled()) {
