@@ -27,9 +27,9 @@ class SanctumTokenTable extends TableAbstract
                 IdColumn::make(),
                 NameColumn::make(),
                 Column::make('abilities')
-                    ->label(__('packages/api::sanctum-token.abilities')),
+                    ->label(trans('packages/api::sanctum-token.abilities')),
                 DateTimeColumn::make('last_used_at')
-                    ->label(__('packages/api::sanctum-token.last_used_at')),
+                    ->label(trans('packages/api::sanctum-token.last_used_at')),
                 CreatedAtColumn::make(),
             ])
             ->addBulkAction(DeleteBulkAction::make())
