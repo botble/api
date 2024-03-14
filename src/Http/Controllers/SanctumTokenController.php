@@ -14,6 +14,13 @@ use Illuminate\Http\JsonResponse;
 
 class SanctumTokenController extends BaseController
 {
+    public function __construct()
+    {
+        $this->breadcrumb()
+            ->add(trans('core/setting::setting.title'), route('settings.index'))
+            ->add(trans('packages/api::api.settings'), route('api.settings'));
+    }
+
     public function index(SanctumTokenTable $sanctumTokenTable): JsonResponse|View
     {
         $this->pageTitle(trans('packages/api::sanctum-token.name'));
@@ -36,8 +43,7 @@ class SanctumTokenController extends BaseController
 
         return $this
             ->httpResponse()
-            ->setPreviousUrl(route('api.sanctum-token.index'))
-            ->setNextUrl(route('api.sanctum-token.index'))
+            ->setNextUrl(route('api.settings'))
             ->withCreatedSuccessMessage();
     }
 

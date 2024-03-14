@@ -15,7 +15,7 @@ AdminHelper::registerRoutes(function () {
 
         Route::group(['prefix' => 'settings/api', 'permission' => 'api.settings'], function () {
             Route::get('/', [ApiController::class, 'edit'])->name('settings');
-            Route::post('/', [ApiController::class, 'update'])->name('settings.update');
+            Route::put('/', [ApiController::class, 'update'])->name('settings.update');
         });
     });
 });
