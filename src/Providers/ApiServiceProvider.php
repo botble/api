@@ -94,7 +94,7 @@ class ApiServiceProvider extends ServiceProvider
         });
     }
 
-    protected function getPath(?string $path = null): string
+    protected function getPath(string|null $path = null): string
     {
         return __DIR__ . '/../..' . ($path ? '/' . ltrim($path, '/') : '');
     }
