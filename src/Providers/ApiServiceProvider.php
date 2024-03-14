@@ -5,7 +5,6 @@ namespace Botble\Api\Providers;
 use Botble\Api\Facades\ApiHelper;
 use Botble\Api\Http\Middleware\ForceJsonResponseMiddleware;
 use Botble\Api\Models\PersonalAccessToken;
-use Botble\Base\Facades\DashboardMenu;
 use Botble\Base\Facades\PanelSectionManager;
 use Botble\Base\PanelSections\PanelSectionItem;
 use Botble\Base\Supports\ServiceProvider;
@@ -53,17 +52,6 @@ class ApiServiceProvider extends ServiceProvider
         }
 
         Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
-
-        DashboardMenu::default()->beforeRetrieving(function () {
-            DashboardMenu::make()
-                ->registerItem([
-                    'id' => 'cms-packages-api-sanctum-token',
-                    'name' => trans('packages/api::sanctum-token.name'),
-                    'icon' => 'ti ti-key',
-                    'url' => route('api.sanctum-token.index'),
-                    'permissions' => ['api.sanctum-token.index'],
-                ]);
-        });
 
         $this->app['events']->listen(RouteMatched::class, function () {
             if (ApiHelper::enabled()) {
