@@ -45,7 +45,7 @@ class ApiServiceProvider extends ServiceProvider
         DashboardMenu::default()->beforeRetrieving(function () {
             DashboardMenu::make()
                 ->registerItem([
-                    'id' => 'cms-plugins-sanctum-token',
+                    'id' => 'cms-plugins-api-sanctum-token',
                     'name' => trans('packages/api::sanctum-token.name'),
                     'icon' => 'ti ti-key',
                     'url' => route('api.sanctum-token.index'),
