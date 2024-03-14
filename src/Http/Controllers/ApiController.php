@@ -4,22 +4,16 @@ namespace Botble\Api\Http\Controllers;
 
 use Botble\Api\Http\Requests\ApiSettingRequest;
 use Botble\Base\Facades\Assets;
-use Botble\Base\Facades\PageTitle;
-use Botble\Base\Http\Controllers\BaseController;
-use Botble\Base\Http\Responses\BaseHttpResponse;
+use Botble\Setting\Http\Controllers\SettingController;
 
-class ApiController extends BaseController
+class ApiController extends SettingController
 {
     public function edit()
     {
-        PageTitle::setTitle(trans('packages/api::api.settings'));
+        $this->pageTitle(trans('packages/api::api.settings'));
 
         Assets::addScriptsDirectly('vendor/core/core/setting/js/setting.js')
             ->addStylesDirectly('vendor/core/core/setting/css/setting.css');
-
-        if (version_compare('7.0.0', get_core_version(), '>')) {
-            return view('packages/api::settings-v6');
-        }
 
         $this->breadcrumb()
             ->add(trans('core/setting::setting.title'), route('settings.index'))
@@ -28,25 +22,8 @@ class ApiController extends BaseController
         return view('packages/api::settings');
     }
 
-    public function update(ApiSettingRequest $request, BaseHttpResponse $response)
+    public function update(ApiSettingRequest $request)
     {
-        $this->saveSettings($request->validated());
-
-        return $response
-            ->setPreviousUrl(route('api.settings'))
-            ->setMessage(trans('core/base::notices.update_success_message'));
-    }
-
-    protected function saveSettings(array $data)
-    {
-        foreach ($data as $settingKey => $settingValue) {
-            if (is_array($settingValue)) {
-                $settingValue = json_encode(array_filter($settingValue));
-            }
-
-            setting()->set($settingKey, (string)$settingValue);
-        }
-
-        setting()->save();
+        return $this->performUpdate($request->validated());
     }
 }

@@ -4,7 +4,7 @@
     @if(session()->has('plainTextToken'))
         <x-core::alert
             type="success"
-            :title="__('This is your new personal access token, this token only show 1 time, make sure you have copied it.')"
+            :title="trans('packages/api::sanctum-token.generated_message')"
         >
             <div class="d-flex align-items-center gap-1 mt-2">
                 <code>{{ session('plainTextToken') }}</code>

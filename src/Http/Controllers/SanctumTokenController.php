@@ -6,10 +6,9 @@ use Botble\Api\Forms\SanctumTokenForm;
 use Botble\Api\Http\Requests\StoreSanctumTokenRequest;
 use Botble\Api\Models\PersonalAccessToken;
 use Botble\Api\Tables\SanctumTokenTable;
-use Botble\Base\Facades\PageTitle;
+use Botble\Base\Http\Actions\DeleteResourceAction;
 use Botble\Base\Http\Controllers\BaseController;
 use Botble\Base\Http\Responses\BaseHttpResponse;
-use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 
@@ -17,14 +16,14 @@ class SanctumTokenController extends BaseController
 {
     public function index(SanctumTokenTable $sanctumTokenTable): JsonResponse|View
     {
-        PageTitle::setTitle(trans('packages/api::sanctum-token.name'));
+        $this->pageTitle(trans('packages/api::sanctum-token.name'));
 
         return $sanctumTokenTable->renderTable();
     }
 
     public function create()
     {
-        PageTitle::setTitle(trans('packages/api::sanctum-token.create'));
+        $this->pageTitle(trans('packages/api::sanctum-token.create'));
 
         return SanctumTokenForm::create()->renderForm();
     }
@@ -42,19 +41,8 @@ class SanctumTokenController extends BaseController
             ->withCreatedSuccessMessage();
     }
 
-    public function destroy(string $id): BaseHttpResponse
+    public function destroy(PersonalAccessToken $sanctumToken): DeleteResourceAction
     {
-        try {
-            PersonalAccessToken::findOrFail($id)->delete();
-
-            return $this
-                ->httpResponse()
-                ->setMessage(trans('core/base::notices.delete_success_message'));
-        } catch (Exception $exception) {
-            return $this
-                ->httpResponse()
-                ->setError()
-                ->setMessage($exception->getMessage());
-        }
+        return DeleteResourceAction::make($sanctumToken);
     }
 }

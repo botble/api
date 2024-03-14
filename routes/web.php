@@ -2,13 +2,11 @@
 
 use Botble\Api\Http\Controllers\ApiController;
 use Botble\Api\Http\Controllers\SanctumTokenController;
-use Botble\Base\Facades\BaseHelper;
+use Botble\Base\Facades\AdminHelper;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix(BaseHelper::getAdminPrefix())
-    ->middleware(['core', 'web', 'auth'])
-    ->name('api.')
-    ->group(function () {
+AdminHelper::registerRoutes(function () {
+    Route::name('api.')->group(function () {
         Route::prefix('sanctum-token')->name('sanctum-token.')->group(function () {
             Route::resource('/', SanctumTokenController::class)
                 ->parameters(['' => 'sanctum-token'])
@@ -20,3 +18,4 @@ Route::prefix(BaseHelper::getAdminPrefix())
             Route::post('/', [ApiController::class, 'update'])->name('settings.update');
         });
     });
+});
