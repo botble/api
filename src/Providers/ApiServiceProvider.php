@@ -3,6 +3,7 @@
 namespace Botble\Api\Providers;
 
 use Botble\Api\Facades\ApiHelper;
+use Botble\Api\Commands\GenerateDocumentationCommand;
 use Botble\Api\Http\Middleware\ForceJsonResponseMiddleware;
 use Botble\Api\Models\PersonalAccessToken;
 use Botble\Base\Facades\PanelSectionManager;
@@ -71,6 +72,12 @@ class ApiServiceProvider extends ServiceProvider
                         ->withRoute('api.settings')
                 );
         });
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                GenerateDocumentationCommand::class,
+            ]);
+        }
     }
 
     protected function getPath(string|null $path = null): string
