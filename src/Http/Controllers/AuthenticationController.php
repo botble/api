@@ -138,6 +138,21 @@ class AuthenticationController extends Controller
             ->setMessage(__('You have been successfully logged out!'));
     }
 
+    /**
+     * Check email existing or not
+     *
+     * @bodyParam email string required The email of the user.
+     *
+     * @response {
+     *  "error": false,
+     *  "data": {
+     *     "exists": true
+     *  },
+     *  "message": null
+     *  }
+     *
+     * @group Authentication
+     */
     public function checkEmail(CheckEmailRequest $request)
     {
         return $response
