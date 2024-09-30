@@ -5,6 +5,7 @@ namespace Botble\Api\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Botble\Api\Facades\ApiHelper;
+use Botble\Api\Http\Requests\CheckEmailRequest;
 use Botble\Api\Http\Requests\LoginRequest;
 use Botble\Api\Http\Requests\RegisterRequest;
 use Botble\Base\Http\Responses\BaseHttpResponse;
@@ -135,5 +136,11 @@ class AuthenticationController extends Controller
 
         return $response
             ->setMessage(__('You have been successfully logged out!'));
+    }
+
+    public function checkEmail(CheckEmailRequest $request)
+    {
+        return $response
+            ->setData(['exists' => ApiHelper::newModel()->where('email', $request->input('email'))->exists()]);
     }
 }
