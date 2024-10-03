@@ -153,7 +153,7 @@ class AuthenticationController extends Controller
      *
      * @group Authentication
      */
-    public function checkEmail(CheckEmailRequest $request)
+    public function checkEmail(CheckEmailRequest $request, BaseHttpResponse $response)
     {
         return $response
             ->setData(['exists' => ApiHelper::newModel()->where('email', $request->input('email'))->exists()]);
