@@ -89,7 +89,7 @@ class AuthenticationController extends Controller
     /**
      * Login
      *
-     * @bodyParam login string required The email/phone of the user.
+     * @bodyParam email string required The email of the user.
      * @bodyParam password string required The password of user to create.
      *
      * @response {
