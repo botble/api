@@ -20,8 +20,7 @@ class AuthenticationController extends Controller
     /**
      * Register
      *
-     * @bodyParam first_name string required The name of the user.
-     * @bodyParam last_name string required The name of the user.
+     * @bodyParam name string required The name of the user.
      * @bodyParam email string required The email of the user.
      * @bodyParam phone string required The phone of the user.
      * @bodyParam password string  required The password of user to create.
@@ -35,11 +34,8 @@ class AuthenticationController extends Controller
      * @response 422 {
      * "message": "The given data was invalid.",
      * "errors": {
-     *     "first_name": [
-     *         "The first name field is required."
-     *     ],
-     *     "last_name": [
-     *         "The last name field is required."
+     *     "name": [
+     *         "The name field is required."
      *     ],
      *     "email": [
      *         "The email field is required."
@@ -56,7 +52,9 @@ class AuthenticationController extends Controller
     {
         $request->merge(['password' => Hash::make($request->input('password'))]);
 
-        $request->merge(['name' => $request->input('first_name') . ' ' . $request->input('last_name')]);
+        if (! $request->has('name')) {
+            $request->merge(['name' => $request->input('first_name') . ' ' . $request->input('last_name')]);
+        }
 
         $user = ApiHelper::newModel()->create($request->only([
             'first_name',
@@ -162,10 +160,15 @@ class AuthenticationController extends Controller
         ];
 
         if ($user) {
-            $data['user'] = [
-                'name' => $user->name,
-                'email' => $user->email,
-            ];
+            $data['user'] = [];
+
+            if ($user->first_name || $user->last_name) {
+                $data['user']['first_name'] = $user->first_name;
+                $data['user']['last_name'] = $user->last_name;
+            }
+
+            $data['user']['name'] = $user->name;
+            $data['user']['email'] = $user->email;
         }
 
         return $response

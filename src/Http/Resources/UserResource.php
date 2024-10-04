@@ -12,11 +12,19 @@ class UserResource extends JsonResource
 {
     public function toArray($request): array
     {
-        return [
+        $data = [
             'id' => $this->id,
-            'first_name' => $this->first_name,
-            'last_name' => $this->last_name,
+        ];
+
+        if ($this->first_name || $this->last_name) {
+            $data['first_name'] = $this->first_name;
+            $data['last_name'] = $this->last_name;
+        }
+
+        return [
+            ...$data,
             'email' => $this->email,
+            'name' => $this->name,
             'phone' => $this->phone,
             'avatar' => $this->avatar_url,
             'dob' => $this->dob,

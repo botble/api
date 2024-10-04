@@ -5,6 +5,7 @@ namespace Botble\Api\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Botble\Api\Facades\ApiHelper;
 use Botble\Api\Http\Resources\UserResource;
+use Botble\Base\Facades\BaseHelper;
 use Botble\Base\Http\Responses\BaseHttpResponse;
 use Botble\Media\Facades\RvMedia;
 use Exception;
@@ -73,8 +74,7 @@ class ProfileController extends Controller
     /**
      * Update profile
      *
-     * @bodyParam first_name string required First name.
-     * @bodyParam last_name string required Last name.
+     * @bodyParam name string required Name.
      * @bodyParam email string Email.
      * @bodyParam dob string required Date of birth.
      * @bodyParam gender string Gender
@@ -89,9 +89,10 @@ class ProfileController extends Controller
         $userId = $request->user()->getKey();
 
         $validator = Validator::make($request->input(), [
-            'first_name' => 'required|max:120|min:2',
-            'last_name' => 'required|max:120|min:2',
-            'phone' => 'required|max:15|min:8',
+            'first_name' => ['nullable', 'required_without:name', 'string', 'max:120', 'min:2'],
+            'last_name' => ['nullable', 'required_without:name', 'string', 'max:120', 'min:2'],
+            'name' => ['nullable', 'required_without:first_name', 'string', 'max:120', 'min:2'],
+            'phone' => ['nullable', 'string', 'min:6', 'confirmed', ...BaseHelper::getPhoneValidationRule(true)],
             'dob' => 'required|max:15|min:8',
             'gender' => 'nullable',
             'description' => 'nullable',
