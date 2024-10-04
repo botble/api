@@ -102,11 +102,16 @@ class AuthenticationController extends Controller
      */
     public function login(LoginRequest $request, BaseHttpResponse $response)
     {
-        if (Auth::guard(ApiHelper::guard())->attempt([
-            'email' => $request->input('email'),
-            'password' => $request->input('password'),
-        ])) {
-            $token = $request->user(ApiHelper::guard())->createToken($request->input('token_name', 'Personal Access Token'));
+        if (
+            Auth::guard(ApiHelper::guard())
+                ->attempt([
+                    'email' => $request->input('email'),
+                    'password' => $request->input('password'),
+                ])
+        ) {
+            $user = $request->user(ApiHelper::guard());
+
+            $token = $user->createToken($request->input('token_name', 'Personal Access Token'));
 
             return $response
                 ->setData(['token' => $token->plainTextToken]);
