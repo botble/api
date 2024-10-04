@@ -92,7 +92,7 @@ class ProfileController extends Controller
             'first_name' => ['nullable', 'required_without:name', 'string', 'max:120', 'min:2'],
             'last_name' => ['nullable', 'required_without:name', 'string', 'max:120', 'min:2'],
             'name' => ['nullable', 'required_without:first_name', 'string', 'max:120', 'min:2'],
-            'phone' => ['nullable', 'string', 'min:6', 'confirmed', ...BaseHelper::getPhoneValidationRule(true)],
+            'phone' => ['nullable', 'string', ...BaseHelper::getPhoneValidationRule(true)],
             'dob' => 'required|max:15|min:8',
             'gender' => 'nullable',
             'description' => 'nullable',
