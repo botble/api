@@ -3,6 +3,7 @@
 namespace Botble\Api\Http\Middleware;
 
 use Closure;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,7 +14,11 @@ class ForceJsonResponseMiddleware
         $request->headers->set('Accept', 'application/json');
 
         if ($request->bearerToken()) {
-            Auth::setUser(Auth::guard('sanctum')->user());
+            $user = Auth::guard('sanctum')->user();
+            
+            if ($user && $user instanceof Authenticatable) {
+                Auth::setUser($user);
+            }
         }
 
         return $next($request);
