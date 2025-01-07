@@ -78,6 +78,22 @@ class ApiServiceProvider extends ServiceProvider
                 GenerateDocumentationCommand::class,
             ]);
         }
+
+        $this->app->booted(function () {
+            add_filter('core_acl_role_permissions', function (array $permissions) {
+                $apiPermissions = $this->app['config']->get('packages.api.permissions', []);
+
+                if (! $apiPermissions) {
+                    return $permissions;
+                }
+
+                foreach ($apiPermissions as $permission) {
+                    $permissions[$permission['flag']] = $permission;
+                }
+
+                return $permissions;
+            }, 120);
+        });
     }
 
     protected function getPath(string|null $path = null): string
