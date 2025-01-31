@@ -99,8 +99,8 @@ class ProfileController extends Controller
             'description' => ['nullable', 'string', 'max:1000'],
             'email' => [
                 'nullable',
-                'max:60', 
-                'min:6', 
+                'max:60',
+                'min:6',
                 'email',
                 'unique:' . ApiHelper::getTable() . ',email,' . $userId,
             ],
@@ -130,6 +130,7 @@ class ProfileController extends Controller
      * Update password
      *
      * @bodyParam password string required The new password of user.
+     * @bodyParam old_password string required The current password of user.
      *
      * @group Profile
      * @authenticated
@@ -138,6 +139,7 @@ class ProfileController extends Controller
     {
         $validator = Validator::make($request->input(), [
             'password' => 'required|min:6|max:60',
+            'old_password' => 'required|string|min:6|max:60',
         ]);
 
         if ($validator->fails()) {
@@ -147,10 +149,17 @@ class ProfileController extends Controller
                 ->setMessage(__('Data invalid!') . ' ' . implode(' ', $validator->errors()->all()) . '.');
         }
 
+        if (! Hash::check($request->input('old_password'), $request->user()->getAuthPassword())) {
+            return $response
+                ->setError()
+                ->setCode(403)
+                ->setMessage(__('Current password is not valid!'));
+        }
+
         $request->user()->update([
             'password' => Hash::make($request->input('password')),
         ]);
 
-        return $response->setMessage(trans('core/acl::users.password_update_success'));
+        return $response->setMessage(__('Update password successfully!'));
     }
 }
