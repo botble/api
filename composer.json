@@ -22,9 +22,9 @@
         }
     },
     "require": {
-        "knuckleswtf/scribe": "^5.0"
     },
     "require-dev": {
+        "knuckleswtf/scribe": "^5.0",
         "laravel/pint": "^1.5.0",
         "phpunit/phpunit": "^9.0|^10.0|^11.0"
     },
