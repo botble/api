@@ -9,15 +9,16 @@ class ForgotPasswordRequest extends Request
     public function rules(): array
     {
         return [
-            'email' => ['required', 'email', 'string'],
+            'email' => ['required', 'string', 'email', 'min:6', 'max:60'],
         ];
     }
 
-    public function bodyParameters()
+    public function bodyParameters(): array
     {
         return [
             'email' => [
-                'example' => 'e.g: abc@example.com',
+                'description' => 'The email address of the user',
+                'example' => 'john.smith@example.com',
             ],
         ];
     }

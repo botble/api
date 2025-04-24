@@ -13,11 +13,12 @@ class CheckEmailRequest extends Request
         ];
     }
 
-    public function bodyParameters()
+    public function bodyParameters(): array
     {
         return [
             'email' => [
-                'example' => 'e.g: abc@example.com',
+                'description' => 'The email address to check',
+                'example' => 'john.smith@example.com',
             ],
         ];
     }

@@ -13,11 +13,12 @@ class ResendEmailVerificationRequest extends Request
         ];
     }
 
-    public function bodyParameters()
+    public function bodyParameters(): array
     {
         return [
             'email' => [
-                'example' => 'e.g: abc@example.com',
+                'description' => 'The email address to resend verification to',
+                'example' => 'john.smith@example.com',
             ],
         ];
     }

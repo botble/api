@@ -13,4 +13,14 @@ class ApiSettingRequest extends Request
             'api_enabled' => [new OnOffRule()],
         ];
     }
+
+    public function bodyParameters(): array
+    {
+        return [
+            'api_enabled' => [
+                'description' => 'Enable or disable the API',
+                'example' => 'on',
+            ],
+        ];
+    }
 }

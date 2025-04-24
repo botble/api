@@ -13,4 +13,18 @@ class StoreSanctumTokenRequest extends Request
             'abilities' => ['nullable', 'array'],
         ];
     }
+
+    public function bodyParameters(): array
+    {
+        return [
+            'name' => [
+                'description' => 'The name of the token',
+                'example' => 'My API Token',
+            ],
+            'abilities' => [
+                'description' => 'The abilities/permissions for the token',
+                'example' => ['read', 'write'],
+            ],
+        ];
+    }
 }

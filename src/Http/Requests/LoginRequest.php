@@ -14,11 +14,16 @@ class LoginRequest extends Request
         ];
     }
 
-    public function bodyParameters()
+    public function bodyParameters(): array
     {
         return [
             'email' => [
-                'example' => 'e.g: abc@example.com',
+                'description' => 'The email address of the user',
+                'example' => 'john.smith@example.com',
+            ],
+            'password' => [
+                'description' => 'The password for the account',
+                'example' => 'secure_password',
             ],
         ];
     }

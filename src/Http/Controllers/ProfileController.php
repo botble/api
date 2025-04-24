@@ -94,14 +94,14 @@ class ProfileController extends Controller
             'last_name' => ['nullable', 'required_without:name', 'string', 'max:120', 'min:2'],
             'name' => ['nullable', 'required_without:first_name', 'string', 'max:120', 'min:2'],
             'phone' => ['nullable', 'string', ...BaseHelper::getPhoneValidationRule(true)],
-            'dob' => ['nullable', 'sometimes', 'date_format:' . BaseHelper::getDateFormat(), 'max:20'],
+            'dob' => ['nullable', 'string', 'sometimes', 'date_format:' . BaseHelper::getDateFormat(), 'max:20'],
             'gender' => ['nullable', 'string', Rule::in(['male', 'female', 'other'])],
             'description' => ['nullable', 'string', 'max:1000'],
             'email' => [
                 'nullable',
+                'email',
                 'max:60',
                 'min:6',
-                'email',
                 'unique:' . ApiHelper::getTable() . ',email,' . $userId,
             ],
         ]);
@@ -138,8 +138,8 @@ class ProfileController extends Controller
     public function updatePassword(Request $request, BaseHttpResponse $response)
     {
         $validator = Validator::make($request->input(), [
-            'password' => 'required|min:6|max:60',
-            'old_password' => 'required|string|min:6|max:60',
+            'password' => ['required', 'string', 'min:6', 'max:60'],
+            'old_password' => ['required', 'string', 'min:6', 'max:60'],
         ]);
 
         if ($validator->fails()) {
