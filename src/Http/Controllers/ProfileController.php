@@ -8,6 +8,7 @@ use Botble\Api\Http\Resources\UserResource;
 use Botble\Base\Facades\BaseHelper;
 use Botble\Base\Http\Responses\BaseHttpResponse;
 use Botble\Media\Facades\RvMedia;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -87,7 +88,8 @@ class ProfileController extends Controller
      */
     public function updateProfile(Request $request, BaseHttpResponse $response)
     {
-        $userId = $request->user()->getKey();
+        $user = $request->user();
+        $userId = $user->getKey();
 
         $validator = Validator::make($request->input(), [
             'first_name' => ['nullable', 'required_without:name', 'string', 'max:120', 'min:2'],
@@ -114,7 +116,12 @@ class ProfileController extends Controller
         }
 
         try {
-            $request->user()->update($request->input());
+            $data = $validator->validated();
+            $user->fill($data);
+            if (! empty($data['dob'])) {
+                $user->dob = Carbon::parse($data['dob']);
+            }
+            $user->save();
 
             return $response
                 ->setData($request->user()->toArray())
