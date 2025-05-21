@@ -10,7 +10,7 @@ class ApiHelper
 {
     public function modelName(): string
     {
-        return (string)$this->getConfig('model', User::class);
+        return (string) $this->getConfig('model', User::class);
     }
 
     public function setModelName(string $modelName): self
@@ -20,17 +20,17 @@ class ApiHelper
         return $this;
     }
 
-    public function guard(): string|null
+    public function guard(): ?string
     {
         return $this->getConfig('guard');
     }
 
-    public function passwordBroker(): string|null
+    public function passwordBroker(): ?string
     {
         return $this->getConfig('password_broker');
     }
 
-    public function getConfig(string $key, $default = null): string|null
+    public function getConfig(string $key, $default = null): ?string
     {
         return config('packages.api.api.provider.' . $key, $default);
     }

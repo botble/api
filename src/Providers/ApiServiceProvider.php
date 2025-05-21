@@ -2,8 +2,8 @@
 
 namespace Botble\Api\Providers;
 
-use Botble\Api\Facades\ApiHelper;
 use Botble\Api\Commands\GenerateDocumentationCommand;
+use Botble\Api\Facades\ApiHelper;
 use Botble\Api\Http\Middleware\ForceJsonResponseMiddleware;
 use Botble\Api\Models\PersonalAccessToken;
 use Botble\Base\Facades\PanelSectionManager;
@@ -96,7 +96,7 @@ class ApiServiceProvider extends ServiceProvider
         });
     }
 
-    protected function getPath(string|null $path = null): string
+    protected function getPath(?string $path = null): string
     {
         return __DIR__ . '/../..' . ($path ? '/' . ltrim($path, '/') : '');
     }
