@@ -11,12 +11,6 @@
             <pre class="bg-dark text-light p-3 rounded" style="font-size: 0.875rem;"><code id="curl-example">curl -X GET "{{ $baseUrl }}/products" \
      -H "Accept: application/json" \
      -H "X-API-KEY: your-api-key-here"</code></pre>
-            <x-core::copy
-                :copyableState="''"
-                copyableMessage="Code copied to clipboard!"
-                class="btn btn-sm btn-outline-light position-absolute top-0 end-0 m-2 copy-button"
-                data-clipboard-target="#curl-example"
-            />
         </div>
     </div>
     
@@ -32,12 +26,6 @@
 })
 .then(response => response.json())
 .then(data => console.log(data));</code></pre>
-            <x-core::copy
-                :copyableState="''"
-                copyableMessage="Code copied to clipboard!"
-                class="btn btn-sm btn-outline-light position-absolute top-0 end-0 m-2 copy-button"
-                data-clipboard-target="#js-example"
-            />
         </div>
     </div>
 </div>
