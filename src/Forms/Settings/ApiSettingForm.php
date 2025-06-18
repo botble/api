@@ -122,7 +122,7 @@ class ApiSettingForm extends SettingForm
         return view('packages/api::settings.partials.api-key-actions')->render();
     }
 
-    protected function getApiKeyFieldWithActions(string $apiKey): string
+    protected function getApiKeyFieldWithActions(?string $apiKey): string
     {
         return view('packages/api::settings.partials.api-key-field', compact('apiKey'))->render();
     }
