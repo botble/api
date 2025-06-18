@@ -11,3 +11,12 @@
         </div>
     @endif
 @endsection
+
+@push('footer')
+    <script>
+        'use strict';
+
+        window.trans = window.trans || {};
+        window.trans.api = {!! json_encode($translations, JSON_HEX_APOS) !!};
+    </script>
+@endpush

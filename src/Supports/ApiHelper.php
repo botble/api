@@ -60,4 +60,16 @@ class ApiHelper
     {
         return setting('api_enabled', 0) == 1;
     }
+
+    public function getApiKey(): ?string
+    {
+        $apiKey = setting('api_key');
+
+        return $apiKey ? trim($apiKey) : null;
+    }
+
+    public function hasApiKey(): bool
+    {
+        return ! empty($this->getApiKey());
+    }
 }

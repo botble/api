@@ -4,6 +4,7 @@ namespace Botble\Api\Providers;
 
 use Botble\Api\Commands\GenerateDocumentationCommand;
 use Botble\Api\Facades\ApiHelper;
+use Botble\Api\Http\Middleware\ApiKeyMiddleware;
 use Botble\Api\Http\Middleware\ForceJsonResponseMiddleware;
 use Botble\Api\Models\PersonalAccessToken;
 use Botble\Base\Facades\PanelSectionManager;
@@ -46,7 +47,8 @@ class ApiServiceProvider extends ServiceProvider
             ->loadAndPublishConfigurations(['api', 'permissions'])
             ->loadAndPublishTranslations()
             ->loadMigrations()
-            ->loadAndPublishViews();
+            ->loadAndPublishViews()
+            ->publishAssets();
 
         if (ApiHelper::enabled()) {
             $this->loadRoutes(['api']);
@@ -57,6 +59,11 @@ class ApiServiceProvider extends ServiceProvider
         $this->app['events']->listen(RouteMatched::class, function () {
             if (ApiHelper::enabled()) {
                 $this->app['router']->pushMiddlewareToGroup('api', ForceJsonResponseMiddleware::class);
+
+                // Add API key middleware if API key is configured
+                if (ApiHelper::hasApiKey()) {
+                    $this->app['router']->pushMiddlewareToGroup('api', ApiKeyMiddleware::class);
+                }
             }
         });
 

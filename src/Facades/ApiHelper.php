@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Facade;
  * @method static \Illuminate\Database\Eloquent\Model|null newModel()
  * @method static string getTable()
  * @method static bool enabled()
+ * @method static string|null getApiKey()
+ * @method static bool hasApiKey()
  *
  * @see \Botble\Api\Supports\ApiHelper
  */

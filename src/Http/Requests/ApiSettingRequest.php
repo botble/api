@@ -11,6 +11,7 @@ class ApiSettingRequest extends Request
     {
         return [
             'api_enabled' => [new OnOffRule()],
+            'api_key' => ['nullable', 'string', 'max:255'],
         ];
     }
 
@@ -20,6 +21,10 @@ class ApiSettingRequest extends Request
             'api_enabled' => [
                 'description' => 'Enable or disable the API',
                 'example' => 'on',
+            ],
+            'api_key' => [
+                'description' => 'API key for authentication (optional)',
+                'example' => 'your-secret-api-key',
             ],
         ];
     }
