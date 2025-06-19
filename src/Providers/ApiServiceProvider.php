@@ -3,6 +3,8 @@
 namespace Botble\Api\Providers;
 
 use Botble\Api\Commands\GenerateDocumentationCommand;
+use Botble\Api\Commands\ProcessScheduledNotificationsCommand;
+use Botble\Api\Commands\SendPushNotificationCommand;
 use Botble\Api\Facades\ApiHelper;
 use Botble\Api\Http\Middleware\ApiKeyMiddleware;
 use Botble\Api\Http\Middleware\ForceJsonResponseMiddleware;
@@ -83,6 +85,8 @@ class ApiServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 GenerateDocumentationCommand::class,
+                ProcessScheduledNotificationsCommand::class,
+                SendPushNotificationCommand::class,
             ]);
         }
 

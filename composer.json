@@ -22,6 +22,7 @@
         }
     },
     "require": {
+        "google/auth": "^1.28"
     },
     "require-dev": {
         "knuckleswtf/scribe": "^5.0",

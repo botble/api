@@ -63,6 +63,275 @@ $(() => {
     const currentApiKey = $('#api-key-input').val() || 'your-api-key-here';
     updateExamplesWithApiKey(currentApiKey);
 
+    // Handle service account file upload
+    $('#upload-service-account-btn').on('click', function(e) {
+        e.preventDefault();
+        $('#service-account-file-input').click();
+    });
+
+    $('#service-account-file-input').on('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            // Validate file type
+            if (file.type !== 'application/json' && !file.name.toLowerCase().endsWith('.json')) {
+                Botble.showError(window.trans.api.invalid_json_file || 'Please select a valid JSON file.');
+                return;
+            }
+
+            // Validate file size (max 2MB)
+            if (file.size > 2 * 1024 * 1024) {
+                Botble.showError('File size must be less than 2MB.');
+                return;
+            }
+
+            uploadServiceAccountFile(file);
+        }
+    });
+
+    // Handle service account file removal
+    $('#remove-service-account-btn').on('click', function(e) {
+        e.preventDefault();
+
+        if (confirm('Are you sure you want to remove the service account file?')) {
+            removeServiceAccountFile();
+        }
+    });
+
+    /**
+     * Upload service account file
+     * @param {File} file
+     */
+    function uploadServiceAccountFile(file) {
+        const formData = new FormData();
+        formData.append('service_account_file', file);
+        formData.append('_token', $('input[name="_token"]').val());
+
+        // Show upload progress
+        const uploadBtn = $('#upload-service-account-btn');
+        const progressDiv = $('#upload-progress');
+        const progressBar = progressDiv.find('.progress-bar');
+
+        uploadBtn.prop('disabled', true);
+        progressDiv.show();
+        progressBar.css('width', '0%');
+
+        $.ajax({
+            url: '/admin/settings/api/upload-service-account',
+            method: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            xhr: function() {
+                const xhr = new window.XMLHttpRequest();
+                // Upload progress
+                xhr.upload.addEventListener('progress', function(evt) {
+                    if (evt.lengthComputable) {
+                        const percentComplete = (evt.loaded / evt.total) * 100;
+                        progressBar.css('width', percentComplete + '%');
+                    }
+                }, false);
+                return xhr;
+            },
+            success: function(response) {
+                if (response.error === false) {
+                    // Update the input field
+                    $('#fcm-service-account-input').val(response.data.path);
+
+                    // Update status display
+                    updateServiceAccountStatus(response.data.path, response.data.filename);
+
+                    // Show success message
+                    Botble.showSuccess(window.trans.api.file_uploaded_successfully || 'File uploaded successfully!');
+
+                    // Refresh the page to update the form state
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1500);
+                } else {
+                    Botble.showError(response.message || (window.trans.api.file_upload_error || 'Failed to upload file'));
+                }
+            },
+            error: function(xhr) {
+                let errorMessage = window.trans.api.file_upload_error || 'Failed to upload service account file';
+                if (xhr.responseJSON && xhr.responseJSON.message) {
+                    errorMessage = xhr.responseJSON.message;
+                }
+                Botble.showError(errorMessage);
+            },
+            complete: function() {
+                uploadBtn.prop('disabled', false);
+                progressDiv.hide();
+                progressBar.css('width', '0%');
+                // Clear the file input
+                $('#service-account-file-input').val('');
+            }
+        });
+    }
+
+    /**
+     * Remove service account file
+     */
+    function removeServiceAccountFile() {
+        const removeBtn = $('#remove-service-account-btn');
+        const originalHtml = removeBtn.html();
+
+        removeBtn.prop('disabled', true).html('<i class="ti ti-loader"></i>');
+
+        $.ajax({
+            url: '/admin/settings/api/remove-service-account',
+            method: 'POST',
+            data: {
+                _token: $('input[name="_token"]').val()
+            },
+            success: function(response) {
+                if (response.error === false) {
+                    // Clear the input field
+                    $('#fcm-service-account-input').val('');
+
+                    // Update status display
+                    updateServiceAccountStatus('', '');
+
+                    // Show success message
+                    Botble.showSuccess(window.trans.api.file_removed_successfully || 'File removed successfully!');
+
+                    // Refresh the page to update the form state
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1500);
+                } else {
+                    Botble.showError(response.message || (window.trans.api.file_remove_error || 'Failed to remove file'));
+                }
+            },
+            error: function(xhr) {
+                let errorMessage = window.trans.api.file_remove_error || 'Failed to remove service account file';
+                if (xhr.responseJSON && xhr.responseJSON.message) {
+                    errorMessage = xhr.responseJSON.message;
+                }
+                Botble.showError(errorMessage);
+            },
+            complete: function() {
+                removeBtn.prop('disabled', false).html(originalHtml);
+            }
+        });
+    }
+
+    /**
+     * Update service account status display
+     * @param {string} path
+     * @param {string} filename
+     */
+    function updateServiceAccountStatus(path, filename) {
+        const statusDiv = $('#service-account-status');
+
+        if (path && filename) {
+            statusDiv.html(`
+                <small class="text-success">
+                    <i class="ti ti-file-check me-1"></i>
+                    Service account file: <strong>${filename}</strong>
+                    <span class="text-muted">(Just uploaded)</span>
+                </small>
+            `);
+        } else {
+            statusDiv.html(`
+                <small class="text-warning">
+                    <i class="ti ti-file-x me-1"></i>
+                    Service account file is <strong>not uploaded</strong>. Please upload your service account JSON file.
+                </small>
+            `);
+        }
+    }
+
+    // Send push notification
+    $('#send-notification-btn').on('click', function(e) {
+        e.preventDefault();
+
+        const submitBtn = $(this);
+        const resultDiv = $('#notification-result');
+
+        // Validate required fields
+        const title = $('#notification-title').val().trim();
+        const message = $('#notification-message').val().trim();
+
+        if (!title) {
+            Botble.showError('Please enter a notification title.');
+            $('#notification-title').focus();
+            return;
+        }
+
+        if (!message) {
+            Botble.showError('Please enter a notification message.');
+            $('#notification-message').focus();
+            return;
+        }
+
+        // Disable submit button and show loading state
+        submitBtn.prop('disabled', true);
+        submitBtn.find('.ti-send').removeClass('ti-send').addClass('ti-loader');
+        submitBtn.find('span').text(window.trans.api.notification_sending || 'Sending...');
+
+        // Hide previous results
+        resultDiv.hide();
+
+        // Get form data
+        const formData = {
+            title: title,
+            message: message,
+            target: $('#notification-target').val(),
+            action_url: $('#notification-action-url').val(),
+            image_url: $('#notification-image-url').val(),
+            _token: $('input[name="_token"]').val()
+        };
+
+        // Send AJAX request
+        $.ajax({
+            url: '/admin/settings/api/send-notification',
+            method: 'POST',
+            data: formData,
+            success: function(response) {
+                if (response.error === false) {
+                    showNotificationResult('success', response.message, response.data);
+                    // Reset form fields
+                    $('#notification-title').val('');
+                    $('#notification-message').val('');
+                    $('#notification-target').val('all');
+                    $('#notification-action-url').val('');
+                    $('#notification-image-url').val('');
+                } else {
+                    showNotificationResult('error', response.message, response.data);
+                }
+            },
+            error: function(xhr) {
+                let errorMessage = 'An error occurred while sending the notification.';
+
+                if (xhr.responseJSON && xhr.responseJSON.message) {
+                    errorMessage = xhr.responseJSON.message;
+                }
+
+                showNotificationResult('error', errorMessage);
+            },
+            complete: function() {
+                // Re-enable submit button and restore original state
+                submitBtn.prop('disabled', false);
+                submitBtn.find('.ti-loader').removeClass('ti-loader').addClass('ti-send');
+                submitBtn.find('span').text(window.trans.api.send_notification || 'Send Notification');
+            }
+        });
+    });
+
+    // Handle Enter key in notification form fields
+    $('#send-notification-form input, #send-notification-form textarea, #send-notification-form select').on('keypress', function(e) {
+        if (e.which === 13 && !e.shiftKey) { // Enter key (but allow Shift+Enter in textarea)
+            if ($(this).is('textarea')) {
+                return; // Allow normal Enter behavior in textarea
+            }
+            e.preventDefault();
+            $('#send-notification-btn').click();
+        }
+    });
+
+    // Load device token stats on page load
+    loadDeviceTokenStats();
+
     /**
      * Generate a random API key
      * @returns {string}
@@ -105,5 +374,82 @@ $(() => {
 .then(data => console.log(data));`;
         
         $('#js-example').text(jsExample);
+    }
+
+    /**
+     * Show notification result
+     * @param {string} type - success or error
+     * @param {string} message
+     * @param {object} data - optional data object
+     */
+    function showNotificationResult(type, message, data = null) {
+        const resultDiv = $('#notification-result');
+        const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
+        const iconClass = type === 'success' ? 'ti-check-circle' : 'ti-alert-circle';
+
+        let content = `
+            <div class="alert ${alertClass} alert-dismissible fade show" role="alert">
+                <i class="${iconClass} me-2"></i>
+                <strong>${message}</strong>
+        `;
+
+        if (data && type === 'success') {
+            content += `
+                <div class="mt-2">
+                    <small>
+                        Sent to: ${data.sent_count || 0} devices<br>
+                        Failed: ${data.failed_count || 0} devices
+                    </small>
+                </div>
+            `;
+        }
+
+        content += `
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        `;
+
+        resultDiv.html(content).show();
+
+        // Auto-hide success messages after 5 seconds
+        if (type === 'success') {
+            setTimeout(() => {
+                resultDiv.find('.alert').alert('close');
+            }, 5000);
+        }
+    }
+
+    /**
+     * Load device token statistics
+     */
+    function loadDeviceTokenStats() {
+        $.ajax({
+            url: '/admin/settings/api/device-tokens-stats',
+            method: 'GET',
+            success: function(response) {
+                if (response.error === false && response.data) {
+                    updateDeviceTokenStats(response.data);
+                }
+            },
+            error: function() {
+                // Silently fail - stats are not critical
+            }
+        });
+    }
+
+    /**
+     * Update device token statistics in the UI
+     * @param {object} stats
+     */
+    function updateDeviceTokenStats(stats) {
+        // Update the notification send info text
+        const infoText = $('#notification-send-info');
+        if (infoText.length && stats.total > 0) {
+            infoText.html(`
+                <i class="ti ti-info-circle me-1"></i>
+                Will send to ${stats.total} active devices
+                (${stats.android} Android, ${stats.ios} iOS, ${stats.customers} customers)
+            `);
+        }
     }
 });

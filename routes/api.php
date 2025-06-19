@@ -16,11 +16,29 @@ Route::group([
 
     Route::post('resend-verify-account-email', 'VerificationController@resend');
 
+    // Device token management (public endpoints)
+    Route::post('device-tokens', 'DeviceTokenController@store');
+
     Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::get('logout', 'AuthenticationController@logout');
         Route::get('me', 'ProfileController@getProfile');
         Route::put('me', 'ProfileController@updateProfile');
         Route::post('update/avatar', 'ProfileController@updateAvatar');
         Route::put('update/password', 'ProfileController@updatePassword');
+
+        // Device token management (authenticated endpoints)
+        Route::get('device-tokens', 'DeviceTokenController@index');
+        Route::put('device-tokens/{id}', 'DeviceTokenController@update');
+        Route::delete('device-tokens/{id}', 'DeviceTokenController@destroy');
+        Route::delete('device-tokens/by-token', 'DeviceTokenController@destroyByToken');
+        Route::post('device-tokens/{id}/deactivate', 'DeviceTokenController@deactivate');
+
+        // Notifications (authenticated endpoints)
+        Route::get('notifications', 'NotificationController@index');
+        Route::get('notifications/stats', 'NotificationController@getStats');
+        Route::post('notifications/mark-all-read', 'NotificationController@markAllAsRead');
+        Route::post('notifications/{id}/read', 'NotificationController@markAsRead');
+        Route::post('notifications/{id}/clicked', 'NotificationController@markAsClicked');
+        Route::delete('notifications/{id}', 'NotificationController@destroy');
     });
 });
