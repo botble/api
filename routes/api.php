@@ -29,8 +29,8 @@ Route::group([
         // Device token management (authenticated endpoints)
         Route::get('device-tokens', 'DeviceTokenController@index');
         Route::put('device-tokens/{id}', 'DeviceTokenController@update');
-        Route::delete('device-tokens/{id}', 'DeviceTokenController@destroy');
         Route::delete('device-tokens/by-token', 'DeviceTokenController@destroyByToken');
+        Route::delete('device-tokens/{id}', 'DeviceTokenController@destroy');
         Route::post('device-tokens/{id}/deactivate', 'DeviceTokenController@deactivate');
 
         // Notifications (authenticated endpoints)

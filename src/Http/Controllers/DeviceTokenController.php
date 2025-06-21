@@ -88,7 +88,7 @@ class DeviceTokenController extends BaseController
      *
      * @group Device Tokens
      */
-    public function update(Request $request, int $id, BaseHttpResponse $response)
+    public function update(Request $request, int|string $id, BaseHttpResponse $response)
     {
         $user = $request->user();
 
@@ -136,7 +136,7 @@ class DeviceTokenController extends BaseController
      *
      * @group Device Tokens
      */
-    public function destroy(Request $request, int $id, BaseHttpResponse $response)
+    public function destroy(Request $request, int|string $id, BaseHttpResponse $response)
     {
         $user = $request->user();
 
@@ -212,7 +212,7 @@ class DeviceTokenController extends BaseController
      *
      * @group Device Tokens
      */
-    public function deactivate(Request $request, int $id, BaseHttpResponse $response)
+    public function deactivate(Request $request, int|string $id, BaseHttpResponse $response)
     {
         $user = $request->user();
 
