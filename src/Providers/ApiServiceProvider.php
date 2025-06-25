@@ -9,6 +9,7 @@ use Botble\Api\Facades\ApiHelper;
 use Botble\Api\Http\Middleware\ApiKeyMiddleware;
 use Botble\Api\Http\Middleware\ForceJsonResponseMiddleware;
 use Botble\Api\Models\PersonalAccessToken;
+use Botble\Base\Events\SystemUpdateDBMigrated;
 use Botble\Base\Facades\PanelSectionManager;
 use Botble\Base\PanelSections\PanelSectionItem;
 use Botble\Base\Supports\ServiceProvider;
@@ -104,6 +105,10 @@ class ApiServiceProvider extends ServiceProvider
 
                 return $permissions;
             }, 120);
+        });
+
+        $this->app['events']->listen(SystemUpdateDBMigrated::class, function () {
+            $this->app['migrator']->run($this->getPath('database/migrations'));
         });
     }
 

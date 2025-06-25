@@ -87,4 +87,19 @@ return [
     'fcm_step_4_2' => 'Enter the path to your service account JSON file',
     'fcm_security_note_title' => 'Security Note:',
     'fcm_security_note' => 'Keep your service account JSON file secure and never commit it to version control. Store it in a secure location on your server.',
+
+    // Additional JavaScript translations
+    'your_api_key_here' => 'your-api-key-here',
+    'file_size_too_large' => 'File size must be less than 2MB.',
+    'confirm_remove_service_account' => 'Are you sure you want to remove the service account file?',
+    'service_account_file_label' => 'Service account file:',
+    'just_uploaded' => '(Just uploaded)',
+    'service_account_not_uploaded' => 'Service account file is <strong>not uploaded</strong>. Please upload your service account JSON file.',
+    'please_enter_notification_title' => 'Please enter a notification title.',
+    'please_enter_notification_message' => 'Please enter a notification message.',
+    'notification_error_occurred' => 'An error occurred while sending the notification.',
+    'sent_to_devices' => 'Sent to: :count devices',
+    'failed_devices' => 'Failed: :count devices',
+    'will_send_to_devices' => 'Will send to :total active devices (:android Android, :ios iOS, :customers customers)',
+    'close' => 'Close',
 ];

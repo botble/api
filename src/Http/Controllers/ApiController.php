@@ -43,6 +43,20 @@ class ApiController extends SettingController
             'invalid_json_file' => trans('packages/api::api.invalid_json_file'),
             'file_upload_error' => trans('packages/api::api.file_upload_error'),
             'file_remove_error' => trans('packages/api::api.file_remove_error'),
+            'send_notification' => trans('packages/api::api.send_notification'),
+            'your_api_key_here' => trans('packages/api::api.your_api_key_here'),
+            'file_size_too_large' => trans('packages/api::api.file_size_too_large'),
+            'confirm_remove_service_account' => trans('packages/api::api.confirm_remove_service_account'),
+            'service_account_file_label' => trans('packages/api::api.service_account_file_label'),
+            'just_uploaded' => trans('packages/api::api.just_uploaded'),
+            'service_account_not_uploaded' => trans('packages/api::api.service_account_not_uploaded'),
+            'please_enter_notification_title' => trans('packages/api::api.please_enter_notification_title'),
+            'please_enter_notification_message' => trans('packages/api::api.please_enter_notification_message'),
+            'notification_error_occurred' => trans('packages/api::api.notification_error_occurred'),
+            'sent_to_devices' => trans('packages/api::api.sent_to_devices'),
+            'failed_devices' => trans('packages/api::api.failed_devices'),
+            'will_send_to_devices' => trans('packages/api::api.will_send_to_devices'),
+            'close' => trans('packages/api::api.close'),
         ];
 
         return view('packages/api::settings', compact('form', 'sanctumTokenTable', 'translations'));

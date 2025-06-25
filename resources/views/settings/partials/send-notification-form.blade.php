@@ -1,7 +1,7 @@
 <div class="mt-4 send-notification-section">
     <h6 class="mb-3">{{ trans('packages/api::api.send_custom_notification') }}</h6>
-    
-    <div class="card border-0 bg-light">
+
+    <div class="card border-0 bg-white">
         <div class="card-body">
             <div id="send-notification-form">
                 @csrf
@@ -37,7 +37,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="mb-3">
                     <label for="notification-message" class="form-label">
                         {{ trans('packages/api::api.notification_message') }}

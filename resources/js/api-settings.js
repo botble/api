@@ -47,12 +47,12 @@ $(() => {
 
     // Update examples when API key changes
     $('#api-key-input').on('input', function() {
-        const apiKey = $(this).val() || 'your-api-key-here';
+        const apiKey = $(this).val() || (window.trans.api.your_api_key_here || 'your-api-key-here');
         updateExamplesWithApiKey(apiKey);
 
         // Show/hide copy button based on whether there's a value
         const copyButton = $('#copy-api-key');
-        if (apiKey && apiKey !== 'your-api-key-here') {
+        if (apiKey && apiKey !== (window.trans.api.your_api_key_here || 'your-api-key-here')) {
             copyButton.show();
         } else {
             copyButton.hide();
@@ -60,7 +60,7 @@ $(() => {
     });
 
     // Initialize examples on page load
-    const currentApiKey = $('#api-key-input').val() || 'your-api-key-here';
+    const currentApiKey = $('#api-key-input').val() || (window.trans.api.your_api_key_here || 'your-api-key-here');
     updateExamplesWithApiKey(currentApiKey);
 
     // Handle service account file upload
@@ -80,7 +80,7 @@ $(() => {
 
             // Validate file size (max 2MB)
             if (file.size > 2 * 1024 * 1024) {
-                Botble.showError('File size must be less than 2MB.');
+                Botble.showError(window.trans.api.file_size_too_large || 'File size must be less than 2MB.');
                 return;
             }
 
@@ -92,7 +92,7 @@ $(() => {
     $('#remove-service-account-btn').on('click', function(e) {
         e.preventDefault();
 
-        if (confirm('Are you sure you want to remove the service account file?')) {
+        if (confirm(window.trans.api.confirm_remove_service_account || 'Are you sure you want to remove the service account file?')) {
             removeServiceAccountFile();
         }
     });
@@ -175,7 +175,7 @@ $(() => {
         const removeBtn = $('#remove-service-account-btn');
         const originalHtml = removeBtn.html();
 
-        removeBtn.prop('disabled', true).html('<i class="ti ti-loader"></i>');
+        removeBtn.prop('disabled', true).html('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6l0 -3" /><path d="M16.25 7.75l2.15 -2.15" /><path d="M18 12l3 0" /><path d="M16.25 16.25l2.15 2.15" /><path d="M12 18l0 3" /><path d="M7.75 16.25l-2.15 2.15" /><path d="M6 12l-3 0" /><path d="M7.75 7.75l-2.15 -2.15" /></svg>');
 
         $.ajax({
             url: '/admin/settings/api/remove-service-account',
@@ -226,16 +226,16 @@ $(() => {
         if (path && filename) {
             statusDiv.html(`
                 <small class="text-success">
-                    <i class="ti ti-file-check me-1"></i>
-                    Service account file: <strong>${filename}</strong>
-                    <span class="text-muted">(Just uploaded)</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-1"><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" /><path d="M9 15l2 2l4 -4" /></svg>
+                    ${window.trans.api.service_account_file_label || 'Service account file:'} <strong>${filename}</strong>
+                    <span class="text-muted">${window.trans.api.just_uploaded || '(Just uploaded)'}</span>
                 </small>
             `);
         } else {
             statusDiv.html(`
                 <small class="text-warning">
-                    <i class="ti ti-file-x me-1"></i>
-                    Service account file is <strong>not uploaded</strong>. Please upload your service account JSON file.
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-1"><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" /><path d="M10 12l4 4m0 -4l-4 4" /></svg>
+                    ${window.trans.api.service_account_not_uploaded || 'Service account file is <strong>not uploaded</strong>. Please upload your service account JSON file.'}
                 </small>
             `);
         }
@@ -253,13 +253,13 @@ $(() => {
         const message = $('#notification-message').val().trim();
 
         if (!title) {
-            Botble.showError('Please enter a notification title.');
+            Botble.showError(window.trans.api.please_enter_notification_title || 'Please enter a notification title.');
             $('#notification-title').focus();
             return;
         }
 
         if (!message) {
-            Botble.showError('Please enter a notification message.');
+            Botble.showError(window.trans.api.please_enter_notification_message || 'Please enter a notification message.');
             $('#notification-message').focus();
             return;
         }
@@ -301,7 +301,7 @@ $(() => {
                 }
             },
             error: function(xhr) {
-                let errorMessage = 'An error occurred while sending the notification.';
+                let errorMessage = window.trans.api.notification_error_occurred || 'An error occurred while sending the notification.';
 
                 if (xhr.responseJSON && xhr.responseJSON.message) {
                     errorMessage = xhr.responseJSON.message;
@@ -339,12 +339,12 @@ $(() => {
     function generateRandomApiKey() {
         const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         let result = '';
-        
+
         // Generate a 32-character random string
         for (let i = 0; i < 32; i++) {
             result += chars.charAt(Math.floor(Math.random() * chars.length));
         }
-        
+
         return result;
     }
 
@@ -354,16 +354,16 @@ $(() => {
      */
     function updateExamplesWithApiKey(apiKey) {
         const baseUrl = window.location.origin + '/api/v1';
-        
+
         // Update cURL example
-        const curlExample = `curl -X GET "${baseUrl}/products" \\
+        const curlExample = `curl -X GET "${baseUrl}/pages" \\
      -H "Accept: application/json" \\
      -H "X-API-KEY: ${apiKey}"`;
-        
+
         $('#curl-example').text(curlExample);
-        
+
         // Update JavaScript example
-        const jsExample = `fetch("${baseUrl}/products", {
+        const jsExample = `fetch("${baseUrl}/pages", {
     method: "GET",
     headers: {
         "Accept": "application/json",
@@ -372,7 +372,7 @@ $(() => {
 })
 .then(response => response.json())
 .then(data => console.log(data));`;
-        
+
         $('#js-example').text(jsExample);
     }
 
@@ -385,27 +385,32 @@ $(() => {
     function showNotificationResult(type, message, data = null) {
         const resultDiv = $('#notification-result');
         const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
-        const iconClass = type === 'success' ? 'ti-check-circle' : 'ti-alert-circle';
+        const iconSvg = type === 'success'
+            ? '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M9 12l2 2l4 -4" /></svg>'
+            : '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /><path d="M12 8v4" /><path d="M12 16h.01" /></svg>';
 
         let content = `
             <div class="alert ${alertClass} alert-dismissible fade show" role="alert">
-                <i class="${iconClass} me-2"></i>
+                ${iconSvg}
                 <strong>${message}</strong>
         `;
 
         if (data && type === 'success') {
+            const sentText = (window.trans.api.sent_to_devices || 'Sent to: :count devices').replace(':count', data.sent_count || 0);
+            const failedText = (window.trans.api.failed_devices || 'Failed: :count devices').replace(':count', data.failed_count || 0);
+
             content += `
                 <div class="mt-2">
                     <small>
-                        Sent to: ${data.sent_count || 0} devices<br>
-                        Failed: ${data.failed_count || 0} devices
+                        ${sentText}<br>
+                        ${failedText}
                     </small>
                 </div>
             `;
         }
 
         content += `
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="${window.trans.api.close || 'Close'}"></button>
             </div>
         `;
 
@@ -445,10 +450,15 @@ $(() => {
         // Update the notification send info text
         const infoText = $('#notification-send-info');
         if (infoText.length && stats.total > 0) {
+            const deviceText = (window.trans.api.will_send_to_devices || 'Will send to :total active devices (:android Android, :ios iOS, :customers customers)')
+                .replace(':total', stats.total)
+                .replace(':android', stats.android)
+                .replace(':ios', stats.ios)
+                .replace(':customers', stats.customers);
+
             infoText.html(`
-                <i class="ti ti-info-circle me-1"></i>
-                Will send to ${stats.total} active devices
-                (${stats.android} Android, ${stats.ios} iOS, ${stats.customers} customers)
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-1"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /><path d="M12 9h.01" /><path d="M11 12h1v4h1" /></svg>
+                ${deviceText}
             `);
         }
     }
