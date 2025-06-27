@@ -3,11 +3,14 @@
 namespace Botble\Api\Models;
 
 use Botble\Base\Models\BaseModel;
+use Botble\Base\Models\Concerns\HasUuidsOrIntegerIds;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class PushNotification extends BaseModel
 {
+    use HasUuidsOrIntegerIds;
+
     protected $table = 'push_notifications';
 
     protected $fillable = [

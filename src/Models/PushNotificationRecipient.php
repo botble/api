@@ -3,11 +3,14 @@
 namespace Botble\Api\Models;
 
 use Botble\Base\Models\BaseModel;
+use Botble\Base\Models\Concerns\HasUuidsOrIntegerIds;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class PushNotificationRecipient extends BaseModel
 {
+    use HasUuidsOrIntegerIds;
+
     protected $table = 'push_notification_recipients';
 
     protected $fillable = [
@@ -43,7 +46,7 @@ class PushNotificationRecipient extends BaseModel
         return $this->morphTo('user', 'user_type', 'user_id');
     }
 
-    public function scopeForUser($query, string $userType, int $userId)
+    public function scopeForUser($query, string $userType, int|string $userId)
     {
         return $query->where('user_type', $userType)->where('user_id', $userId);
     }
@@ -136,9 +139,9 @@ class PushNotificationRecipient extends BaseModel
     }
 
     public static function createForUser(
-        int $pushNotificationId,
+        int|string $pushNotificationId,
         string $userType,
-        int $userId,
+        int|string $userId,
         ?string $deviceToken = null,
         ?string $platform = null
     ): self {

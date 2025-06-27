@@ -3,11 +3,14 @@
 namespace Botble\Api\Models;
 
 use Botble\Base\Models\BaseModel;
+use Botble\Base\Models\Concerns\HasUuidsOrIntegerIds;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class DeviceToken extends BaseModel
 {
+    use HasUuidsOrIntegerIds;
+
     protected $table = 'device_tokens';
 
     protected $fillable = [
@@ -56,7 +59,7 @@ class DeviceToken extends BaseModel
         return $query->where('platform', $platform);
     }
 
-    public function scopeForUser($query, string $userType, int $userId)
+    public function scopeForUser($query, string $userType, int|string $userId)
     {
         return $query->where('user_type', $userType)->where('user_id', $userId);
     }

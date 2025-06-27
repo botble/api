@@ -28,17 +28,17 @@ Route::group([
 
         // Device token management (authenticated endpoints)
         Route::get('device-tokens', 'DeviceTokenController@index');
-        Route::put('device-tokens/{id}', 'DeviceTokenController@update');
+        Route::put('device-tokens/{id}', 'DeviceTokenController@update')->wherePrimaryKey();
         Route::delete('device-tokens/by-token', 'DeviceTokenController@destroyByToken');
-        Route::delete('device-tokens/{id}', 'DeviceTokenController@destroy');
-        Route::post('device-tokens/{id}/deactivate', 'DeviceTokenController@deactivate');
+        Route::delete('device-tokens/{id}', 'DeviceTokenController@destroy')->wherePrimaryKey();
+        Route::post('device-tokens/{id}/deactivate', 'DeviceTokenController@deactivate')->wherePrimaryKey();
 
         // Notifications (authenticated endpoints)
         Route::get('notifications', 'NotificationController@index');
         Route::get('notifications/stats', 'NotificationController@getStats');
         Route::post('notifications/mark-all-read', 'NotificationController@markAllAsRead');
-        Route::post('notifications/{id}/read', 'NotificationController@markAsRead');
-        Route::post('notifications/{id}/clicked', 'NotificationController@markAsClicked');
-        Route::delete('notifications/{id}', 'NotificationController@destroy');
+        Route::post('notifications/{id}/read', 'NotificationController@markAsRead')->wherePrimaryKey();
+        Route::post('notifications/{id}/clicked', 'NotificationController@markAsClicked')->wherePrimaryKey();
+        Route::delete('notifications/{id}', 'NotificationController@destroy')->wherePrimaryKey();
     });
 });
