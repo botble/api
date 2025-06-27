@@ -1,6 +1,13 @@
 $(() => {
     'use strict';
 
+    // Get URLs from data attributes
+    const container = $('#api-settings-container');
+    const uploadServiceAccountUrl = container.data('upload-service-account-url');
+    const removeServiceAccountUrl = container.data('remove-service-account-url');
+    const sendNotificationUrl = container.data('send-notification-url');
+    const deviceTokensStatsUrl = container.data('device-tokens-stats-url');
+
     // Edit API key - enable the field for editing
     $(document).on('click', '#edit-api-key', function(e) {
         e.preventDefault();
@@ -116,7 +123,7 @@ $(() => {
         progressBar.css('width', '0%');
 
         $.ajax({
-            url: '/admin/settings/api/upload-service-account',
+            url: uploadServiceAccountUrl,
             method: 'POST',
             data: formData,
             processData: false,
@@ -178,7 +185,7 @@ $(() => {
         removeBtn.prop('disabled', true).html('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6l0 -3" /><path d="M16.25 7.75l2.15 -2.15" /><path d="M18 12l3 0" /><path d="M16.25 16.25l2.15 2.15" /><path d="M12 18l0 3" /><path d="M7.75 16.25l-2.15 2.15" /><path d="M6 12l-3 0" /><path d="M7.75 7.75l-2.15 -2.15" /></svg>');
 
         $.ajax({
-            url: '/admin/settings/api/remove-service-account',
+            url: removeServiceAccountUrl,
             method: 'POST',
             data: {
                 _token: $('input[name="_token"]').val()
@@ -284,7 +291,7 @@ $(() => {
 
         // Send AJAX request
         $.ajax({
-            url: '/admin/settings/api/send-notification',
+            url: sendNotificationUrl,
             method: 'POST',
             data: formData,
             success: function(response) {
@@ -429,7 +436,7 @@ $(() => {
      */
     function loadDeviceTokenStats() {
         $.ajax({
-            url: '/admin/settings/api/device-tokens-stats',
+            url: deviceTokensStatsUrl,
             method: 'GET',
             success: function(response) {
                 if (response.error === false && response.data) {
