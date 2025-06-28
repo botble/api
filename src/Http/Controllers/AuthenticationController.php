@@ -161,7 +161,7 @@ class AuthenticationController extends Controller
         $user = ApiHelper::newModel()->where('email', $request->input('email'))->first();
 
         $data = [
-            'exists' => $user ? true : false,
+            'exists' => (bool) $user,
         ];
 
         if ($user) {

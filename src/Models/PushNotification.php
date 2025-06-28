@@ -4,6 +4,7 @@ namespace Botble\Api\Models;
 
 use Botble\Base\Models\BaseModel;
 use Botble\Base\Models\Concerns\HasUuidsOrIntegerIds;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -42,6 +43,13 @@ class PushNotification extends BaseModel
         'read_count' => 'integer',
     ];
 
+    protected static function booted(): void
+    {
+        static::deleting(function (PushNotification $pushNotification) {
+            $pushNotification->recipients()->delete();
+        });
+    }
+
     public function recipients(): HasMany
     {
         return $this->hasMany(PushNotificationRecipient::class);
@@ -73,7 +81,7 @@ class PushNotification extends BaseModel
     {
         return $query->where('status', 'scheduled')
             ->whereNotNull('scheduled_at')
-            ->where('scheduled_at', '<=', now());
+            ->where('scheduled_at', '<=', Carbon::now());
     }
 
     public function markAsSent(int $sentCount = 0, int $failedCount = 0): void
@@ -82,7 +90,7 @@ class PushNotification extends BaseModel
             'status' => 'sent',
             'sent_count' => $sentCount,
             'failed_count' => $failedCount,
-            'sent_at' => now(),
+            'sent_at' => Carbon::now(),
         ]);
     }
 
@@ -90,7 +98,7 @@ class PushNotification extends BaseModel
     {
         $this->update([
             'status' => 'failed',
-            'sent_at' => now(),
+            'sent_at' => Carbon::now(),
         ]);
     }
 
@@ -129,13 +137,13 @@ class PushNotification extends BaseModel
 
     public function canBeSent(): bool
     {
-        return in_array($this->status, ['scheduled']) &&
+        return $this->status == 'scheduled' &&
                (! $this->scheduled_at || $this->scheduled_at->isPast());
     }
 
     public static function createFromRequest(array $data, ?int $createdBy = null): self
     {
-        return static::create([
+        return static::query()->create([
             'title' => $data['title'],
             'message' => $data['message'],
             'type' => $data['type'] ?? 'general',

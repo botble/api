@@ -4,6 +4,7 @@ namespace Botble\Api\Models;
 
 use Botble\Base\Models\BaseModel;
 use Botble\Base\Models\Concerns\HasUuidsOrIntegerIds;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
@@ -81,7 +82,7 @@ class PushNotificationRecipient extends BaseModel
         if (! $this->delivered_at) {
             $this->update([
                 'status' => 'delivered',
-                'delivered_at' => now(),
+                'delivered_at' => Carbon::now(),
             ]);
 
             // Update parent notification delivered count
@@ -94,7 +95,7 @@ class PushNotificationRecipient extends BaseModel
         if (! $this->read_at) {
             $this->update([
                 'status' => 'read',
-                'read_at' => now(),
+                'read_at' => Carbon::now(),
             ]);
 
             // Update parent notification read count
@@ -105,7 +106,7 @@ class PushNotificationRecipient extends BaseModel
     public function markAsClicked(): void
     {
         $this->update([
-            'clicked_at' => now(),
+            'clicked_at' => Carbon::now(),
         ]);
 
         // Also mark as read if not already
@@ -145,7 +146,7 @@ class PushNotificationRecipient extends BaseModel
         ?string $deviceToken = null,
         ?string $platform = null
     ): self {
-        return static::create([
+        return static::query()->create([
             'push_notification_id' => $pushNotificationId,
             'user_type' => $userType,
             'user_id' => $userId,

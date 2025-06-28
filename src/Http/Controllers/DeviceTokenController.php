@@ -189,7 +189,7 @@ class DeviceTokenController extends BaseController
 
         $userType = $this->getUserType($user);
 
-        $deviceToken = DeviceToken::where('token', $request->input('token'))
+        $deviceToken = DeviceToken::query()->where('token', $request->input('token'))
             ->forUser($userType, $user->id)
             ->first();
 

@@ -255,7 +255,7 @@ class NotificationController extends BaseController
     protected function getUserType($user): string
     {
         // Determine user type based on the model class
-        $class = get_class($user);
+        $class = $user::class;
 
         if (str_contains($class, 'Customer')) {
             return 'customer';

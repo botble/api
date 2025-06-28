@@ -52,12 +52,14 @@ class SendPushNotificationCommand extends Command
         $title = $this->ask('Notification title');
         if (empty($title)) {
             $this->error('Title is required');
+
             return self::FAILURE;
         }
 
         $message = $this->ask('Notification message');
         if (empty($message)) {
             $this->error('Message is required');
+
             return self::FAILURE;
         }
 
@@ -73,8 +75,9 @@ class SendPushNotificationCommand extends Command
         } elseif ($target === 'user') {
             $userType = $this->choice('Select user type', ['customer', 'admin']);
             $userId = $this->ask('Enter user ID');
-            if (!is_numeric($userId)) {
+            if (! is_numeric($userId)) {
                 $this->error('User ID must be numeric');
+
                 return self::FAILURE;
             }
             $targetValue = $userId;
@@ -82,7 +85,7 @@ class SendPushNotificationCommand extends Command
 
         $actionUrl = $this->ask('Action URL (optional)');
         $imageUrl = $this->ask('Image URL (optional)');
-        
+
         $addData = $this->confirm('Add custom data?', false);
         $data = null;
         if ($addData) {
@@ -91,6 +94,7 @@ class SendPushNotificationCommand extends Command
                 $data = json_decode($dataInput, true);
                 if (json_last_error() !== JSON_ERROR_NONE) {
                     $this->error('Invalid JSON data');
+
                     return self::FAILURE;
                 }
             }
@@ -99,8 +103,9 @@ class SendPushNotificationCommand extends Command
         $schedule = null;
         if ($this->confirm('Schedule notification?', false)) {
             $schedule = $this->ask('Schedule time (Y-m-d H:i:s format)');
-            if ($schedule && !strtotime($schedule)) {
+            if ($schedule && ! strtotime($schedule)) {
                 $this->error('Invalid date format');
+
                 return self::FAILURE;
             }
         }
@@ -131,6 +136,7 @@ class SendPushNotificationCommand extends Command
 
         if (empty($title) || empty($message)) {
             $this->error('Title and message are required. Use --title and --message options or run with --interactive');
+
             return self::FAILURE;
         }
 
@@ -140,6 +146,7 @@ class SendPushNotificationCommand extends Command
         // Validate target and target-value combination
         if (in_array($target, ['platform', 'user_type', 'user']) && empty($targetValue)) {
             $this->error("Target value is required when target is '{$target}'");
+
             return self::FAILURE;
         }
 
@@ -148,13 +155,15 @@ class SendPushNotificationCommand extends Command
             $data = json_decode($this->option('data'), true);
             if (json_last_error() !== JSON_ERROR_NONE) {
                 $this->error('Invalid JSON data');
+
                 return self::FAILURE;
             }
         }
 
         $schedule = $this->option('schedule');
-        if ($schedule && !strtotime($schedule)) {
+        if ($schedule && ! strtotime($schedule)) {
             $this->error('Invalid schedule date format');
+
             return self::FAILURE;
         }
 
@@ -189,6 +198,7 @@ class SendPushNotificationCommand extends Command
             if (isset($notificationData['scheduled_at']) && $notificationData['scheduled_at']) {
                 $this->info("✅ Notification scheduled for: {$notificationData['scheduled_at']}");
                 $this->info("Notification ID: {$pushNotification->id}");
+
                 return self::SUCCESS;
             }
 
@@ -205,6 +215,7 @@ class SendPushNotificationCommand extends Command
                 'error' => $e->getMessage(),
                 'data' => $notificationData,
             ]);
+
             return self::FAILURE;
         }
     }
@@ -226,7 +237,8 @@ class SendPushNotificationCommand extends Command
 
             case 'user':
                 $userType = $notificationData['user_type'] ?? 'customer';
-                return $this->pushNotificationService->sendToUser($userType, (int)$targetValue, $notificationData);
+
+                return $this->pushNotificationService->sendToUser($userType, (int) $targetValue, $notificationData);
 
             default:
                 throw new \InvalidArgumentException("Invalid target type: {$target}");
@@ -236,7 +248,7 @@ class SendPushNotificationCommand extends Command
     protected function displayResult(array $result, PushNotification $pushNotification): void
     {
         $this->line('');
-        
+
         if ($result['success']) {
             $this->info('✅ Notification sent successfully!');
         } else {

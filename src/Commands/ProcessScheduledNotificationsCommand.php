@@ -46,6 +46,7 @@ class ProcessScheduledNotificationsCommand extends Command
 
         if ($notifications->isEmpty()) {
             $this->info('✅ No scheduled notifications to process');
+
             return self::SUCCESS;
         }
 
@@ -63,18 +64,19 @@ class ProcessScheduledNotificationsCommand extends Command
 
         foreach ($notifications as $notification) {
             $processed++;
-            
+
             $this->line("Processing notification #{$notification->id}: {$notification->title}");
-            
+
             if ($dryRun) {
-                $this->line("  → Would send to: {$notification->target_type}" . 
+                $this->line("  → Would send to: {$notification->target_type}" .
                     ($notification->target_value ? " ({$notification->target_value})" : ''));
+
                 continue;
             }
 
             try {
                 $result = $this->sendNotification($notification);
-                
+
                 if ($result['success']) {
                     $successful++;
                     $this->line("  ✅ Sent successfully (sent: {$result['sent_count']}, failed: {$result['failed_count']})");
@@ -82,14 +84,14 @@ class ProcessScheduledNotificationsCommand extends Command
                     $failed++;
                     $this->line("  ❌ Failed: {$result['message']}");
                 }
-                
+
             } catch (\Exception $e) {
                 $failed++;
                 $this->line("  ❌ Error: {$e->getMessage()}");
-                
+
                 // Mark notification as failed
                 $notification->markAsFailed($e->getMessage());
-                
+
                 logger()->error('Scheduled notification processing failed', [
                     'notification_id' => $notification->id,
                     'error' => $e->getMessage(),
@@ -125,7 +127,7 @@ class ProcessScheduledNotificationsCommand extends Command
             'all' => $this->pushNotificationService->sendToAll($notificationData),
             'platform' => $this->pushNotificationService->sendToPlatform($notification->target_value, $notificationData),
             'user_type' => $this->pushNotificationService->sendToUserType($notification->target_value, $notificationData),
-            'user' => $this->pushNotificationService->sendToUser('customer', (int)$notification->target_value, $notificationData),
+            'user' => $this->pushNotificationService->sendToUser('customer', (int) $notification->target_value, $notificationData),
             default => throw new \InvalidArgumentException("Invalid target type: {$notification->target_type}")
         };
 

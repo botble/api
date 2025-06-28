@@ -10,6 +10,7 @@ use Botble\Api\Tables\SanctumTokenTable;
 use Botble\Base\Facades\Assets;
 use Botble\Base\Http\Responses\BaseHttpResponse;
 use Botble\Setting\Http\Controllers\SettingController;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -90,25 +91,12 @@ class ApiController extends SettingController
         $target = $request->input('target', 'all');
 
         // Send notification based on target
-        switch ($target) {
-            case 'android':
-                $result = $pushService->sendToPlatform('android', $notification);
-
-                break;
-            case 'ios':
-                $result = $pushService->sendToPlatform('ios', $notification);
-
-                break;
-            case 'customers':
-                $result = $pushService->sendToUserType('customer', $notification);
-
-                break;
-            case 'all':
-            default:
-                $result = $pushService->sendToAll($notification);
-
-                break;
-        }
+        $result = match ($target) {
+            'android' => $pushService->sendToPlatform('android', $notification),
+            'ios' => $pushService->sendToPlatform('ios', $notification),
+            'customers' => $pushService->sendToUserType('customer', $notification),
+            default => $pushService->sendToAll($notification),
+        };
 
         if ($result['success']) {
             return $response
@@ -168,7 +156,7 @@ class ApiController extends SettingController
             $missingFields = [];
 
             foreach ($requiredFields as $field) {
-                if (! isset($json[$field]) || empty($json[$field])) {
+                if (empty($json[$field])) {
                     $missingFields[] = $field;
                 }
             }
@@ -211,7 +199,7 @@ class ApiController extends SettingController
                 ])
                 ->setMessage('Service account file uploaded and configured successfully');
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             logger()->error('Failed to upload service account file', [
                 'error' => $e->getMessage(),
                 'file' => $e->getFile(),
@@ -240,7 +228,7 @@ class ApiController extends SettingController
             return $response
                 ->setMessage('Service account file removed successfully');
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             logger()->error('Failed to remove service account file', [
                 'error' => $e->getMessage(),
                 'path' => setting('fcm_service_account_path'),

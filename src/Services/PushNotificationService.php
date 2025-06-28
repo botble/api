@@ -5,27 +5,23 @@ namespace Botble\Api\Services;
 use Botble\Api\Models\DeviceToken;
 use Botble\Api\Models\PushNotification;
 use Botble\Api\Models\PushNotificationRecipient;
+use Carbon\Carbon;
 use Exception;
 use Google\Auth\Credentials\ServiceAccountCredentials;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 
 class PushNotificationService
 {
     protected string $fcmV1Url = 'https://fcm.googleapis.com/v1/projects/{project_id}/messages:send';
-    protected ?string $accessToken = null;
 
-    public function __construct()
-    {
-        //
-    }
+    protected ?string $accessToken = null;
 
     public function sendToAll(array $notification): array
     {
-        $tokens = DeviceToken::active()->get();
+        $tokens = DeviceToken::query()->active()->get();
 
         if ($tokens->isEmpty()) {
             return [
@@ -44,7 +40,8 @@ class PushNotificationService
 
     public function sendToPlatform(string $platform, array $notification): array
     {
-        $tokens = DeviceToken::active()
+        $tokens = DeviceToken::query()
+            ->active()
             ->forPlatform($platform)
             ->get();
 
@@ -65,7 +62,8 @@ class PushNotificationService
 
     public function sendToUserType(string $userType, array $notification): array
     {
-        $tokens = DeviceToken::active()
+        $tokens = DeviceToken::query()
+            ->active()
             ->where('user_type', $userType)
             ->get();
 
@@ -86,7 +84,8 @@ class PushNotificationService
 
     public function sendToUser(string $userType, int $userId, array $notification): array
     {
-        $tokens = DeviceToken::active()
+        $tokens = DeviceToken::query()
+            ->active()
             ->forUser($userType, $userId)
             ->get();
 
@@ -108,7 +107,6 @@ class PushNotificationService
     public function sendToDeviceTokens($deviceTokens, array $notification, PushNotification $pushNotification): array
     {
         $tokens = $deviceTokens->pluck('token')->toArray();
-        $serverKey = setting('fcm_server_key');
 
         $projectId = setting('fcm_project_id');
         $serviceAccountPath = setting('fcm_service_account_path');
@@ -168,7 +166,7 @@ class PushNotificationService
 
         // Remove invalid tokens
         if (! empty($invalidTokens)) {
-            DeviceToken::whereIn('token', $invalidTokens)->delete();
+            DeviceToken::query()->whereIn('token', $invalidTokens)->delete();
         }
 
         // Update notification status
@@ -203,7 +201,7 @@ class PushNotificationService
                         'action_url' => $notification['action_url'] ?? '',
                         'image_url' => $notification['image_url'] ?? '',
                         'type' => $notification['type'] ?? 'general',
-                        'sent_at' => now()->toISOString(),
+                        'sent_at' => Carbon::now()->toISOString(),
                     ],
                 ],
             ];
@@ -248,14 +246,15 @@ class PushNotificationService
             if ($response->successful()) {
                 // Update recipient status if available
                 if ($deviceToken && $pushNotification) {
-                    $recipient = PushNotificationRecipient::where('push_notification_id', $pushNotification->id)
+                    $recipient = PushNotificationRecipient::query()
+                        ->where('push_notification_id', $pushNotification->id)
                         ->where('device_token', $token)
                         ->first();
 
                     if ($recipient) {
                         $recipient->update([
                             'status' => 'delivered',
-                            'delivered_at' => now(),
+                            'delivered_at' => Carbon::now(),
                             'fcm_response' => $response->json(),
                         ]);
                     }
@@ -271,7 +270,8 @@ class PushNotificationService
 
                 // Update recipient status if available
                 if ($deviceToken && $pushNotification) {
-                    $recipient = PushNotificationRecipient::where('push_notification_id', $pushNotification->id)
+                    $recipient = PushNotificationRecipient::query()
+                        ->where('push_notification_id', $pushNotification->id)
                         ->where('device_token', $token)
                         ->first();
 
@@ -404,10 +404,10 @@ class PushNotificationService
     public function getDeviceTokensCount(): array
     {
         return [
-            'total' => DeviceToken::active()->count(),
-            'android' => DeviceToken::active()->forPlatform('android')->count(),
-            'ios' => DeviceToken::active()->forPlatform('ios')->count(),
-            'customers' => DeviceToken::active()->where('user_type', 'customer')->count(),
+            'total' => DeviceToken::query()->active()->count(),
+            'android' => DeviceToken::query()->active()->forPlatform('android')->count(),
+            'ios' => DeviceToken::query()->active()->forPlatform('ios')->count(),
+            'customers' => DeviceToken::query()->active()->where('user_type', 'customer')->count(),
         ];
     }
 

@@ -27,7 +27,7 @@ return new class () extends Migration {
             $table->string('error_message')->nullable();
             $table->timestamps();
 
-            $table->foreign('push_notification_id')->references('id')->on('push_notifications')->onDelete('cascade');
+            $table->foreign('push_notification_id');
             $table->index(['push_notification_id', 'user_type', 'user_id'], 'pnr_notification_user_index');
             $table->index(['user_type', 'user_id', 'status'], 'pnr_user_status_index');
             $table->index(['user_type', 'user_id', 'read_at'], 'pnr_user_read_index');
