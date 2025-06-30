@@ -6,6 +6,7 @@ use Botble\Api\Commands\GenerateDocumentationCommand;
 use Botble\Api\Commands\ProcessScheduledNotificationsCommand;
 use Botble\Api\Commands\SendPushNotificationCommand;
 use Botble\Api\Facades\ApiHelper;
+use Botble\Api\Http\Middleware\ApiEnabledMiddleware;
 use Botble\Api\Http\Middleware\ApiKeyMiddleware;
 use Botble\Api\Http\Middleware\ForceJsonResponseMiddleware;
 use Botble\Api\Models\PersonalAccessToken;
@@ -51,22 +52,21 @@ class ApiServiceProvider extends ServiceProvider
             ->loadAndPublishTranslations()
             ->loadMigrations()
             ->loadAndPublishViews()
-            ->publishAssets();
-
-        if (ApiHelper::enabled()) {
-            $this->loadRoutes(['api']);
-        }
+            ->publishAssets()
+            ->loadRoutes(['api']);
 
         Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
 
         $this->app['events']->listen(RouteMatched::class, function () {
-            if (ApiHelper::enabled()) {
-                $this->app['router']->pushMiddlewareToGroup('api', ForceJsonResponseMiddleware::class);
+            // Always add the API enabled middleware first
+            $this->app['router']->pushMiddlewareToGroup('api', ApiEnabledMiddleware::class);
 
-                // Add API key middleware if API key is configured
-                if (ApiHelper::hasApiKey()) {
-                    $this->app['router']->pushMiddlewareToGroup('api', ApiKeyMiddleware::class);
-                }
+            // Add force JSON response middleware
+            $this->app['router']->pushMiddlewareToGroup('api', ForceJsonResponseMiddleware::class);
+
+            // Add API key middleware if API key is configured
+            if (ApiHelper::hasApiKey()) {
+                $this->app['router']->pushMiddlewareToGroup('api', ApiKeyMiddleware::class);
             }
         });
 

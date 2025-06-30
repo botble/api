@@ -2,7 +2,6 @@
 
 namespace Botble\Api\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Botble\Api\Facades\ApiHelper;
 use Botble\Api\Http\Requests\ResendEmailVerificationRequest;
@@ -10,7 +9,7 @@ use Botble\Base\Http\Responses\BaseHttpResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class VerificationController extends Controller
+class VerificationController extends BaseApiController
 {
     /**
      * Resend email verification

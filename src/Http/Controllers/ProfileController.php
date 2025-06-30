@@ -2,7 +2,6 @@
 
 namespace Botble\Api\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Botble\Api\Facades\ApiHelper;
 use Botble\Api\Http\Resources\UserResource;
 use Botble\Base\Facades\BaseHelper;
@@ -16,7 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
-class ProfileController extends Controller
+class ProfileController extends BaseApiController
 {
     /**
      * Get the user profile information.

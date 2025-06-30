@@ -1,8 +1,6 @@
 <?php
 
 namespace Botble\Api\Http\Controllers;
-
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Botble\Api\Facades\ApiHelper;
 use Botble\Api\Http\Requests\CheckEmailRequest;
@@ -15,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class AuthenticationController extends Controller
+class AuthenticationController extends BaseApiController
 {
     /**
      * Register

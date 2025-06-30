@@ -2,13 +2,12 @@
 
 namespace Botble\Api\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Botble\ACL\Traits\SendsPasswordResetEmails;
 use Botble\Api\Facades\ApiHelper;
 use Botble\Api\Http\Requests\ForgotPasswordRequest;
 use Illuminate\Support\Facades\Password;
 
-class ForgotPasswordController extends Controller
+class ForgotPasswordController extends BaseApiController
 {
     use SendsPasswordResetEmails;
 

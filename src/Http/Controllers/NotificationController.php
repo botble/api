@@ -3,11 +3,10 @@
 namespace Botble\Api\Http\Controllers;
 
 use Botble\Api\Models\PushNotificationRecipient;
-use Botble\Base\Http\Controllers\BaseController;
 use Botble\Base\Http\Responses\BaseHttpResponse;
 use Illuminate\Http\Request;
 
-class NotificationController extends BaseController
+class NotificationController extends BaseApiController
 {
     /**
      * Get user notifications
