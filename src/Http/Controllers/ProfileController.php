@@ -3,7 +3,9 @@
 namespace Botble\Api\Http\Controllers;
 
 use Botble\Api\Facades\ApiHelper;
+use Botble\Api\Http\Requests\UpdateUserSettingsRequest;
 use Botble\Api\Http\Resources\UserResource;
+use Botble\Api\Models\UserSetting;
 use Botble\Base\Facades\BaseHelper;
 use Botble\Base\Http\Responses\BaseHttpResponse;
 use Botble\Media\Facades\RvMedia;
@@ -167,5 +169,93 @@ class ProfileController extends BaseApiController
         ]);
 
         return $response->setMessage(__('Update password successfully!'));
+    }
+
+    /**
+     * Get user settings
+     *
+     * @group Profile
+     * @authenticated
+     */
+    public function getSettings(Request $request, BaseHttpResponse $response)
+    {
+        $user = $request->user();
+        $userType = $this->getUserType($user);
+
+        $settings = UserSetting::getUserSettings($userType, $user->getKey());
+
+        // Set default values for common settings
+        $defaultSettings = [
+            'biometric_enabled' => false,
+            'notification_enabled' => true,
+            'language' => 'en',
+            'currency' => 'USD',
+            'theme' => 'light',
+            'timezone' => 'UTC',
+        ];
+
+        $settings = array_merge($defaultSettings, $settings);
+
+        return $response->setData($settings);
+    }
+
+    /**
+     * Update user settings
+     *
+     * @bodyParam biometric_enabled boolean Enable/disable biometric authentication.
+     * @bodyParam notification_enabled boolean Enable/disable notifications.
+     * @bodyParam language string User's preferred language.
+     * @bodyParam currency string User's preferred currency.
+     * @bodyParam theme string User's preferred theme (light, dark, auto).
+     * @bodyParam timezone string User's timezone.
+     *
+     * @group Profile
+     * @authenticated
+     */
+    public function updateSettings(UpdateUserSettingsRequest $request, BaseHttpResponse $response)
+    {
+        try {
+            $user = $request->user();
+            $userType = $this->getUserType($user);
+
+            $validatedData = $request->validated();
+
+            // Update each setting individually
+            foreach ($validatedData as $key => $value) {
+                UserSetting::setUserSetting($userType, $user->getKey(), $key, $value);
+            }
+
+            // Get updated settings to return
+            $updatedSettings = UserSetting::getUserSettings($userType, $user->getKey());
+
+            return $response
+                ->setData([
+                    'message' => __('Settings updated successfully!'),
+                    'settings' => $updatedSettings,
+                ])
+                ->setMessage(__('Settings updated successfully!'));
+        } catch (Exception $ex) {
+            return $response
+                ->setError()
+                ->setMessage($ex->getMessage());
+        }
+    }
+
+    /**
+     * Get user type based on model class
+     */
+    protected function getUserType($user): string
+    {
+        $class = get_class($user);
+
+        if (str_contains($class, 'Customer')) {
+            return 'customer';
+        }
+
+        if (str_contains($class, 'User')) {
+            return 'admin';
+        }
+
+        return 'user';
     }
 }

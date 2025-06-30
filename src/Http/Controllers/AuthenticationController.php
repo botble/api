@@ -1,6 +1,7 @@
 <?php
 
 namespace Botble\Api\Http\Controllers;
+
 use App\Models\User;
 use Botble\Api\Facades\ApiHelper;
 use Botble\Api\Http\Requests\CheckEmailRequest;

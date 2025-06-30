@@ -26,6 +26,10 @@ Route::group([
         Route::post('update/avatar', 'ProfileController@updateAvatar');
         Route::put('update/password', 'ProfileController@updatePassword');
 
+        // Settings endpoints
+        Route::get('settings', 'ProfileController@getSettings');
+        Route::put('settings', 'ProfileController@updateSettings');
+
         // Device token management (authenticated endpoints)
         Route::get('device-tokens', 'DeviceTokenController@index');
         Route::put('device-tokens/{id}', 'DeviceTokenController@update')->wherePrimaryKey();
