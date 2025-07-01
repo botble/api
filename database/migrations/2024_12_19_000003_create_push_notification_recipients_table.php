@@ -14,11 +14,11 @@ return new class () extends Migration {
         Schema::create('push_notification_recipients', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('push_notification_id');
-            $table->string('user_type'); // customer, admin, etc.
+            $table->string('user_type', 50); // customer, admin, etc. - reduced length
             $table->unsignedBigInteger('user_id');
             $table->string('device_token')->nullable(); // The specific device token used
-            $table->string('platform')->nullable(); // android, ios
-            $table->string('status')->default('sent'); // sent, delivered, failed, read
+            $table->string('platform', 20)->nullable(); // android, ios - reduced length
+            $table->string('status', 20)->default('sent'); // sent, delivered, failed, read - reduced length
             $table->timestamp('sent_at')->nullable();
             $table->timestamp('delivered_at')->nullable();
             $table->timestamp('read_at')->nullable();
