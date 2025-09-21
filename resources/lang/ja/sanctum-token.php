@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'サンクタムトークン',
-    'create' => '新しいサンクタムトークン',
-    'abilities' => '能力',
-    'last_used_at' => '最後に使用した時間',
-    'generated_message' => 'これは新しい個人用アクセス トークンです。このトークンは 1 回だけ表示されます。コピーしたことを確認してください。',
+    'name' => 'Sanctum Token',
+    'create' => '新しいSanctum Token',
+    'abilities' => '権限',
+    'last_used_at' => '最終使用日時',
+    'generated_message' => 'これは新しい個人用アクセストークンです。このトークンは一度だけ表示されますので、必ずコピーしてください。',
 ];

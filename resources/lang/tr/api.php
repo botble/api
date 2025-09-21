@@ -35,7 +35,7 @@ return [
     'fcm_service_account_path' => 'Hizmet Hesabı JSON Dosyası',
     'fcm_service_account_path_description' => 'Firebase servis hesabınızın JSON dosyasına giden yol (depolama/uygulama/ veya mutlak yola göre).',
     'fcm_service_account_upload_description' => 'Firebase servis hesabınızın JSON dosyasını yükleyin. Dosya storage/app/firebase/ dizininde güvenli bir şekilde saklanacaktır.',
-    'fcm_service_account_path_placeholder' => 'firebase/hizmet-hesabı.json',
+    'fcm_service_account_path_placeholder' => 'firebase/service-account.json',
     'upload_file' => 'Dosya Yükle',
     'remove_file' => 'Dosyayı Kaldır',
     'uploaded_at' => 'Yüklendi',
@@ -87,7 +87,9 @@ return [
     'fcm_step_4_2' => 'Hizmet hesabınızın JSON dosyasına giden yolu girin',
     'fcm_security_note_title' => 'Güvenlik Notu:',
     'fcm_security_note' => 'Hizmet hesabınızın JSON dosyasını güvenli tutun ve asla sürüm kontrolüne göndermeyin. Sunucunuzda güvenli bir konumda saklayın.',
-    'your_api_key_here' => 'api-anahtarınız-burada',
+
+    // Additional JavaScript translations
+    'your_api_key_here' => 'your-api-key-here',
     'file_size_too_large' => 'Dosya boyutu 2MB\'tan küçük olmalıdır.',
     'confirm_remove_service_account' => 'Hizmet hesabı dosyasını kaldırmak istediğinizden emin misiniz?',
     'service_account_file_label' => 'Hizmet hesabı dosyası:',
@@ -98,6 +100,6 @@ return [
     'notification_error_occurred' => 'Bildirim gönderilirken bir hata oluştu.',
     'sent_to_devices' => 'Şuraya gönderildi: :count cihazlar',
     'failed_devices' => 'Başarısız: :count aygıtlar',
-    'will_send_to_devices' => 'Şuna gönderilecek: toplam aktif cihazlar (:android Android, :ios iOS, :customers müşteriler)',
-    'close' => 'Kapalı',
+    'will_send_to_devices' => 'Şuna gönderilecek: :total aktif cihazlar (:android Android, :ios iOS, :customers müşteriler)',
+    'close' => 'Kapat',
 ];
