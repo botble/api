@@ -1,8 +1,8 @@
 <?php
 
-use Botble\Api\Http\Controllers\ApiController;
-use Botble\Api\Http\Controllers\SanctumTokenController;
-use Botble\Base\Facades\AdminHelper;
+use Tiryaq\Api\Http\Controllers\ApiController;
+use Tiryaq\Api\Http\Controllers\SanctumTokenController;
+use Tiryaq\Base\Facades\AdminHelper;
 use Illuminate\Support\Facades\Route;
 
 AdminHelper::registerRoutes(function () {
