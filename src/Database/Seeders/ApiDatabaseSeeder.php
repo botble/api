@@ -1,8 +1,8 @@
 <?php
 
-namespace Botble\Api\Database\Seeders;
+namespace Tiryaq\Api\Database\Seeders;
 
-use Botble\Base\Supports\BaseSeeder;
+use Tiryaq\Base\Supports\BaseSeeder;
 use Illuminate\Support\Facades\DB;
 
 class ApiDatabaseSeeder extends BaseSeeder
