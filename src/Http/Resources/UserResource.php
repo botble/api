@@ -1,9 +1,9 @@
 <?php
 
-namespace Botble\Api\Http\Resources;
+namespace Tiryaq\Api\Http\Resources;
 
-use Botble\ACL\Models\User;
-use Botble\Api\Models\UserSetting;
+use Tiryaq\ACL\Models\User;
+use Tiryaq\Api\Models\UserSetting;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
