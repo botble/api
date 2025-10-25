@@ -1,11 +1,11 @@
 <?php
 
-namespace Botble\Api\Database\Seeders;
+namespace Tiryaq\Api\Database\Seeders;
 
-use Botble\Api\Models\PushNotification;
-use Botble\Api\Models\PushNotificationRecipient;
-use Botble\Base\Supports\BaseSeeder;
-use Botble\Ecommerce\Models\Customer;
+use Tiryaq\Api\Models\PushNotification;
+use Tiryaq\Api\Models\PushNotificationRecipient;
+use Tiryaq\Base\Supports\BaseSeeder;
+use Tiryaq\Ecommerce\Models\Customer;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
