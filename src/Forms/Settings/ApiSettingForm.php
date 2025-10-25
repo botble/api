@@ -1,18 +1,18 @@
 <?php
 
-namespace Botble\Api\Forms\Settings;
+namespace Tiryaq\Api\Forms\Settings;
 
-use Botble\Api\Facades\ApiHelper;
-use Botble\Api\Http\Requests\ApiSettingRequest;
-use Botble\Base\Forms\FieldOptions\AlertFieldOption;
-use Botble\Base\Forms\FieldOptions\HtmlFieldOption;
-use Botble\Base\Forms\FieldOptions\OnOffFieldOption;
-use Botble\Base\Forms\FieldOptions\TextFieldOption;
-use Botble\Base\Forms\Fields\AlertField;
-use Botble\Base\Forms\Fields\HtmlField;
-use Botble\Base\Forms\Fields\OnOffCheckboxField;
-use Botble\Base\Forms\Fields\TextField;
-use Botble\Setting\Forms\SettingForm;
+use Tiryaq\Api\Facades\ApiHelper;
+use Tiryaq\Api\Http\Requests\ApiSettingRequest;
+use Tiryaq\Base\Forms\FieldOptions\AlertFieldOption;
+use Tiryaq\Base\Forms\FieldOptions\HtmlFieldOption;
+use Tiryaq\Base\Forms\FieldOptions\OnOffFieldOption;
+use Tiryaq\Base\Forms\FieldOptions\TextFieldOption;
+use Tiryaq\Base\Forms\Fields\AlertField;
+use Tiryaq\Base\Forms\Fields\HtmlField;
+use Tiryaq\Base\Forms\Fields\OnOffCheckboxField;
+use Tiryaq\Base\Forms\Fields\TextField;
+use Tiryaq\Setting\Forms\SettingForm;
 
 class ApiSettingForm extends SettingForm
 {
