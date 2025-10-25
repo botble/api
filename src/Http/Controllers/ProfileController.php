@@ -1,14 +1,14 @@
 <?php
 
-namespace Botble\Api\Http\Controllers;
+namespace Tiryaq\Api\Http\Controllers;
 
-use Botble\Api\Facades\ApiHelper;
-use Botble\Api\Http\Requests\UpdateUserSettingsRequest;
-use Botble\Api\Http\Resources\UserResource;
-use Botble\Api\Models\UserSetting;
-use Botble\Base\Facades\BaseHelper;
-use Botble\Base\Http\Responses\BaseHttpResponse;
-use Botble\Media\Facades\RvMedia;
+use Tiryaq\Api\Facades\ApiHelper;
+use Tiryaq\Api\Http\Requests\UpdateUserSettingsRequest;
+use Tiryaq\Api\Http\Resources\UserResource;
+use Tiryaq\Api\Models\UserSetting;
+use Tiryaq\Base\Facades\BaseHelper;
+use Tiryaq\Base\Http\Responses\BaseHttpResponse;
+use Tiryaq\Media\Facades\RvMedia;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
