@@ -1,8 +1,8 @@
 <?php
 
-namespace Botble\Api\Http\Controllers;
+namespace Tiryaq\Api\Http\Controllers;
 
-use Botble\Base\Http\Controllers\BaseController;
+use Tiryaq\Base\Http\Controllers\BaseController;
 
 /**
  * Base API Controller for all API endpoints
