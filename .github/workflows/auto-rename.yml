@@ -1,52 +1,101 @@
-name: Auto Rename Botble to Tiryaq
+name: Auto Rename Botble → Tiryaq
 
 on:
-  workflow_dispatch:  # تقدر تشغله يدويًا من صفحة Actions
+  workflow_dispatch:
   push:
-    branches: [ main ]
+    branches:
+      - main
+      - develop
+      - '**/rename**'
+      - '**/chore**'
+
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
   rename:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
 
       - name: Install tools
-        run: sudo apt-get update && sudo apt-get install -y perl jq
-
-      - name: Rename Botble to Tiryaq
         run: |
-          echo "🔍 Changing namespaces and use statements..."
-          find src -type f -name '*.php' -print0 | xargs -0 perl -pi -e '
-            s/^namespace\s+Botble\\/namespace Tiryaq\\/;
-            s/\buse\s+Botble\\/use Tiryaq\\/g;
-            s/([^A-Za-z0-9_\\])Botble\\/${1}Tiryaq\\/g;
-          '
+          sudo apt-get update
+          sudo apt-get install -y jq
 
-          echo "🔧 Updating composer.json..."
-          TMP=composer.tmp.json
-          jq '
-            .name = "tiryaq/api"
-            | .type = "tiryaq-package"
-            | .autoload."psr-4" = {"Tiryaq\\Api\\": "src/"}
-            | .extra.laravel.providers = ["Tiryaq\\Api\\Providers\\ApiServiceProvider"]
-            | .replace = {"botble/api": "self.version"}
-          ' composer.json > "$TMP" && mv "$TMP" composer.json
+      - name: Rename namespaces & use (all tracked PHP except vendor/)
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -d '' PHP_FILES < <(git ls-files -z "*.php" | grep -vzZ "^vendor/")
+          if [ ${#PHP_FILES[@]} -gt 0 ]; then
+            # 1) namespace Botble\X → namespace Tiryaq\X
+            printf '%s\0' "${PHP_FILES[@]}" | xargs -0 perl -pi -e 's/^namespace\s+Botble\\/namespace Tiryaq\\/;'
+            # 2) use Botble\… → use Tiryaq\…
+            printf '%s\0' "${PHP_FILES[@]}" | xargs -0 perl -pi -e 's/\buse\s+Botble\\/use Tiryaq\\/g;'
+            # 3) أي FQN داخل السطور \Botble\… → \Tiryaq\…
+            printf '%s\0' "${PHP_FILES[@]}" | xargs -0 perl -pi -e 's/([^A-Za-z0-9_\\])Botble\\/${1}Tiryaq\\/g;'
+          fi
 
-      - name: Commit and push changes
+      - name: Update composer.json safely
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -f composer.json ]; then
+            TMP=composer.tmp.json
+            jq '
+              .name = "tiryaq/api"
+              | .type = "tiryaq-package"
+              | .autoload = (.autoload // {})
+              | .autoload."psr-4" = {"Tiryaq\\Api\\":"src/"}
+              | .extra = (.extra // {})
+              | .extra.laravel = (.extra.laravel // {})
+              | .extra.laravel.providers = ["Tiryaq\\Api\\Providers\\ApiServiceProvider"]
+              | .replace = (.replace // {})
+              | .replace["botble/api"] = "self.version"
+            ' composer.json > "$TMP" && mv "$TMP" composer.json
+          fi
+
+      - name: Show diff summary
+        run: |
+          echo "Changed files:"
+          git status --porcelain
+          echo
+          echo "Namespace counts (after):"
+          grep -Rno --exclude-dir=vendor '\bnamespace Botble\\' || true
+          grep -Rno --exclude-dir=vendor '\buse Botble\\' || true
+
+      - name: Commit changes (if any)
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add -A
-          git commit -m "refactor: rename Botble to Tiryaq namespaces and composer.json" || echo "No changes"
-          git push origin HEAD:chore/auto-rename || true
+          if ! git diff --quiet; then
+            git add -A
+            git commit -m "refactor: rename Botble→Tiryaq namespaces + composer.json"
+          else
+            echo "No changes to commit."
+          fi
 
-      - name: Create Pull Request
+      - name: Push to branch
+        run: |
+          # ادفع على فرع ثابت للـ PR عشان المراجعة
+          TARGET_BRANCH="chore/auto-rename"
+          git branch -f "$TARGET_BRANCH"
+          git push origin "$TARGET_BRANCH" -f
+
+      - name: Create / Update Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: chore/auto-rename
-          title: "refactor: rename Botble to Tiryaq (auto)"
+          title: "refactor: rename Botble → Tiryaq (auto)"
           body: |
-            Automated namespace & composer rename from Botble to Tiryaq.
+            Automated namespace & composer rename from **Botble** to **Tiryaq**.
+            - Renamed all `namespace Botble\*` / `use Botble\*` (excluding vendor/)
+            - Updated `composer.json` (name/type/autoload/providers/replace)
+          labels: enhancement, automated
