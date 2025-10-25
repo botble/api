@@ -1,9 +1,9 @@
 <?php
 
-namespace Botble\Api\Commands;
+namespace Tiryaq\Api\Commands;
 
-use Botble\Api\Models\PushNotification;
-use Botble\Api\Services\PushNotificationService;
+use Tiryaq\Api\Models\PushNotification;
+use Tiryaq\Api\Services\PushNotificationService;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Attribute\AsCommand;
