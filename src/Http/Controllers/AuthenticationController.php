@@ -1,13 +1,13 @@
 <?php
 
-namespace Botble\Api\Http\Controllers;
+namespace Tiryaq\Api\Http\Controllers;
 
 use App\Models\User;
-use Botble\Api\Facades\ApiHelper;
-use Botble\Api\Http\Requests\CheckEmailRequest;
-use Botble\Api\Http\Requests\LoginRequest;
-use Botble\Api\Http\Requests\RegisterRequest;
-use Botble\Base\Http\Responses\BaseHttpResponse;
+use Tiryaq\Api\Facades\ApiHelper;
+use Tiryaq\Api\Http\Requests\CheckEmailRequest;
+use Tiryaq\Api\Http\Requests\LoginRequest;
+use Tiryaq\Api\Http\Requests\RegisterRequest;
+use Tiryaq\Base\Http\Responses\BaseHttpResponse;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
