@@ -1,15 +1,15 @@
 <?php
 
-namespace Botble\Api\Http\Controllers;
+namespace Tiryaq\Api\Http\Controllers;
 
-use Botble\Api\Forms\Settings\ApiSettingForm;
-use Botble\Api\Http\Requests\ApiSettingRequest;
-use Botble\Api\Http\Requests\SendNotificationRequest;
-use Botble\Api\Services\PushNotificationService;
-use Botble\Api\Tables\SanctumTokenTable;
-use Botble\Base\Facades\Assets;
-use Botble\Base\Http\Responses\BaseHttpResponse;
-use Botble\Setting\Http\Controllers\SettingController;
+use Tiryaq\Api\Forms\Settings\ApiSettingForm;
+use Tiryaq\Api\Http\Requests\ApiSettingRequest;
+use Tiryaq\Api\Http\Requests\SendNotificationRequest;
+use Tiryaq\Api\Services\PushNotificationService;
+use Tiryaq\Api\Tables\SanctumTokenTable;
+use Tiryaq\Base\Facades\Assets;
+use Tiryaq\Base\Http\Responses\BaseHttpResponse;
+use Tiryaq\Setting\Http\Controllers\SettingController;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
