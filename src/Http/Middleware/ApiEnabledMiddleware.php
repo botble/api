@@ -1,8 +1,8 @@
 <?php
 
-namespace Botble\Api\Http\Middleware;
+namespace Tiryaq\Api\Http\Middleware;
 
-use Botble\Api\Facades\ApiHelper;
+use Tiryaq\Api\Facades\ApiHelper;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
