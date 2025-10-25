@@ -1,10 +1,10 @@
 <?php
 
-namespace Botble\Api\Http\Controllers;
+namespace Tiryaq\Api\Http\Controllers;
 
-use Botble\ACL\Traits\SendsPasswordResetEmails;
-use Botble\Api\Facades\ApiHelper;
-use Botble\Api\Http\Requests\ForgotPasswordRequest;
+use Tiryaq\ACL\Traits\SendsPasswordResetEmails;
+use Tiryaq\Api\Facades\ApiHelper;
+use Tiryaq\Api\Http\Requests\ForgotPasswordRequest;
 use Illuminate\Support\Facades\Password;
 
 class ForgotPasswordController extends BaseApiController
