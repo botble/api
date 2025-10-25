@@ -1,12 +1,12 @@
 <?php
 
-namespace Botble\Api\Forms;
+namespace Tiryaq\Api\Forms;
 
-use Botble\Api\Http\Requests\StoreSanctumTokenRequest;
-use Botble\Api\Models\PersonalAccessToken;
-use Botble\Base\Forms\FieldOptions\NameFieldOption;
-use Botble\Base\Forms\Fields\TextField;
-use Botble\Base\Forms\FormAbstract;
+use Tiryaq\Api\Http\Requests\StoreSanctumTokenRequest;
+use Tiryaq\Api\Models\PersonalAccessToken;
+use Tiryaq\Base\Forms\FieldOptions\NameFieldOption;
+use Tiryaq\Base\Forms\Fields\TextField;
+use Tiryaq\Base\Forms\FormAbstract;
 
 class SanctumTokenForm extends FormAbstract
 {
