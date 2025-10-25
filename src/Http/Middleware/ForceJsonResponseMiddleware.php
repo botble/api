@@ -1,6 +1,6 @@
 <?php
 
-namespace Botble\Api\Http\Middleware;
+namespace Tiryaq\Api\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Authenticatable;
