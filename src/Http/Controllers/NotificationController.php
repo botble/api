@@ -1,9 +1,9 @@
 <?php
 
-namespace Botble\Api\Http\Controllers;
+namespace Tiryaq\Api\Http\Controllers;
 
-use Botble\Api\Models\PushNotificationRecipient;
-use Botble\Base\Http\Responses\BaseHttpResponse;
+use Tiryaq\Api\Models\PushNotificationRecipient;
+use Tiryaq\Base\Http\Responses\BaseHttpResponse;
 use Illuminate\Http\Request;
 
 class NotificationController extends BaseApiController
