@@ -1,10 +1,10 @@
 <?php
 
-namespace Botble\Api\Http\Requests;
+namespace Tiryaq\Api\Http\Requests;
 
-use Botble\Api\Facades\ApiHelper;
-use Botble\Base\Facades\BaseHelper;
-use Botble\Support\Http\Requests\Request;
+use Tiryaq\Api\Facades\ApiHelper;
+use Tiryaq\Base\Facades\BaseHelper;
+use Tiryaq\Support\Http\Requests\Request;
 use Illuminate\Validation\Rule;
 
 class RegisterRequest extends Request
