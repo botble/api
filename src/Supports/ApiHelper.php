@@ -1,9 +1,9 @@
 <?php
 
-namespace Botble\Api\Supports;
+namespace Tiryaq\Api\Supports;
 
 use App\Models\User;
-use Botble\Base\Models\BaseModel;
+use Tiryaq\Base\Models\BaseModel;
 use Illuminate\Database\Eloquent\Model;
 
 class ApiHelper
