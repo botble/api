@@ -1,10 +1,10 @@
 <?php
 
-namespace Botble\Api\Database\Seeders;
+namespace Tiryaq\Api\Database\Seeders;
 
-use Botble\Api\Models\UserSetting;
-use Botble\Base\Supports\BaseSeeder;
-use Botble\Ecommerce\Models\Customer;
+use Tiryaq\Api\Models\UserSetting;
+use Tiryaq\Base\Supports\BaseSeeder;
+use Tiryaq\Ecommerce\Models\Customer;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
