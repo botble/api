@@ -1,17 +1,17 @@
 <?php
 
-namespace Botble\Api\Tables;
+namespace Tiryaq\Api\Tables;
 
-use Botble\Api\Models\PersonalAccessToken;
-use Botble\Table\Abstracts\TableAbstract;
-use Botble\Table\Actions\DeleteAction;
-use Botble\Table\BulkActions\DeleteBulkAction;
-use Botble\Table\Columns\Column;
-use Botble\Table\Columns\CreatedAtColumn;
-use Botble\Table\Columns\DateTimeColumn;
-use Botble\Table\Columns\IdColumn;
-use Botble\Table\Columns\NameColumn;
-use Botble\Table\HeaderActions\CreateHeaderAction;
+use Tiryaq\Api\Models\PersonalAccessToken;
+use Tiryaq\Table\Abstracts\TableAbstract;
+use Tiryaq\Table\Actions\DeleteAction;
+use Tiryaq\Table\BulkActions\DeleteBulkAction;
+use Tiryaq\Table\Columns\Column;
+use Tiryaq\Table\Columns\CreatedAtColumn;
+use Tiryaq\Table\Columns\DateTimeColumn;
+use Tiryaq\Table\Columns\IdColumn;
+use Tiryaq\Table\Columns\NameColumn;
+use Tiryaq\Table\HeaderActions\CreateHeaderAction;
 use Illuminate\Database\Eloquent\Builder;
 
 class SanctumTokenTable extends TableAbstract
