@@ -1,6 +1,6 @@
 <?php
 
-namespace Botble\Api\Http\Requests;
+namespace Tiryaq\Api\Http\Requests;
 
 class UpdateUserSettingsRequest extends ApiRequest
 {
