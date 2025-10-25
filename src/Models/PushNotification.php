@@ -1,9 +1,9 @@
 <?php
 
-namespace Botble\Api\Models;
+namespace Tiryaq\Api\Models;
 
-use Botble\Base\Models\BaseModel;
-use Botble\Base\Models\Concerns\HasUuidsOrIntegerIds;
+use Tiryaq\Base\Models\BaseModel;
+use Tiryaq\Base\Models\Concerns\HasUuidsOrIntegerIds;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
