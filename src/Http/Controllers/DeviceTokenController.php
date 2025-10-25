@@ -1,10 +1,10 @@
 <?php
 
-namespace Botble\Api\Http\Controllers;
+namespace Tiryaq\Api\Http\Controllers;
 
-use Botble\Api\Http\Requests\DeviceTokenRequest;
-use Botble\Api\Models\DeviceToken;
-use Botble\Base\Http\Responses\BaseHttpResponse;
+use Tiryaq\Api\Http\Requests\DeviceTokenRequest;
+use Tiryaq\Api\Models\DeviceToken;
+use Tiryaq\Base\Http\Responses\BaseHttpResponse;
 use Exception;
 use Illuminate\Http\Request;
 
