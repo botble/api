@@ -1,13 +1,13 @@
 <?php
 
-namespace Botble\Api\Facades;
+namespace Tiryaq\Api\Facades;
 
-use Botble\Api\Supports\ApiHelper as ApiHelperSupport;
+use Tiryaq\Api\Supports\ApiHelper as ApiHelperSupport;
 use Illuminate\Support\Facades\Facade;
 
 /**
  * @method static string modelName()
- * @method static \Botble\Api\Supports\ApiHelper setModelName(string $modelName)
+ * @method static \Tiryaq\Api\Supports\ApiHelper setModelName(string $modelName)
  * @method static string|null guard()
  * @method static string|null passwordBroker()
  * @method static string|null getConfig(string $key, $default = null)
@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static string|null getApiKey()
  * @method static bool hasApiKey()
  *
- * @see \Botble\Api\Supports\ApiHelper
+ * @see \Tiryaq\Api\Supports\ApiHelper
  */
 class ApiHelper extends Facade
 {
