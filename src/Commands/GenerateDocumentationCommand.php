@@ -1,8 +1,8 @@
 <?php
 
-namespace Botble\Api\Commands;
+namespace Tiryaq\Api\Commands;
 
-use Botble\Setting\Facades\Setting;
+use Tiryaq\Setting\Facades\Setting;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Attribute\AsCommand;
 
