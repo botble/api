@@ -1,21 +1,21 @@
 <?php
 
-namespace Botble\Api\Providers;
+namespace Tiryaq\Api\Providers;
 
-use Botble\Api\Commands\GenerateDocumentationCommand;
-use Botble\Api\Commands\ProcessScheduledNotificationsCommand;
-use Botble\Api\Commands\SendPushNotificationCommand;
-use Botble\Api\Facades\ApiHelper;
-use Botble\Api\Http\Middleware\ApiEnabledMiddleware;
-use Botble\Api\Http\Middleware\ApiKeyMiddleware;
-use Botble\Api\Http\Middleware\ForceJsonResponseMiddleware;
-use Botble\Api\Models\PersonalAccessToken;
-use Botble\Base\Events\SystemUpdateDBMigrated;
-use Botble\Base\Facades\PanelSectionManager;
-use Botble\Base\PanelSections\PanelSectionItem;
-use Botble\Base\Supports\ServiceProvider;
-use Botble\Base\Traits\LoadAndPublishDataTrait;
-use Botble\Setting\PanelSections\SettingCommonPanelSection;
+use Tiryaq\Api\Commands\GenerateDocumentationCommand;
+use Tiryaq\Api\Commands\ProcessScheduledNotificationsCommand;
+use Tiryaq\Api\Commands\SendPushNotificationCommand;
+use Tiryaq\Api\Facades\ApiHelper;
+use Tiryaq\Api\Http\Middleware\ApiEnabledMiddleware;
+use Tiryaq\Api\Http\Middleware\ApiKeyMiddleware;
+use Tiryaq\Api\Http\Middleware\ForceJsonResponseMiddleware;
+use Tiryaq\Api\Models\PersonalAccessToken;
+use Tiryaq\Base\Events\SystemUpdateDBMigrated;
+use Tiryaq\Base\Facades\PanelSectionManager;
+use Tiryaq\Base\PanelSections\PanelSectionItem;
+use Tiryaq\Base\Supports\ServiceProvider;
+use Tiryaq\Base\Traits\LoadAndPublishDataTrait;
+use Tiryaq\Setting\PanelSections\SettingCommonPanelSection;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Routing\Events\RouteMatched;
 use Laravel\Sanctum\Sanctum;
