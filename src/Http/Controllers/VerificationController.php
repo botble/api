@@ -1,11 +1,11 @@
 <?php
 
-namespace Botble\Api\Http\Controllers;
+namespace Tiryaq\Api\Http\Controllers;
 
 use App\Models\User;
-use Botble\Api\Facades\ApiHelper;
-use Botble\Api\Http\Requests\ResendEmailVerificationRequest;
-use Botble\Base\Http\Responses\BaseHttpResponse;
+use Tiryaq\Api\Facades\ApiHelper;
+use Tiryaq\Api\Http\Requests\ResendEmailVerificationRequest;
+use Tiryaq\Base\Http\Responses\BaseHttpResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
