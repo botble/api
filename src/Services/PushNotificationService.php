@@ -1,10 +1,10 @@
 <?php
 
-namespace Botble\Api\Services;
+namespace Tiryaq\Api\Services;
 
-use Botble\Api\Models\DeviceToken;
-use Botble\Api\Models\PushNotification;
-use Botble\Api\Models\PushNotificationRecipient;
+use Tiryaq\Api\Models\DeviceToken;
+use Tiryaq\Api\Models\PushNotification;
+use Tiryaq\Api\Models\PushNotificationRecipient;
 use Carbon\Carbon;
 use Exception;
 use Google\Auth\Credentials\ServiceAccountCredentials;
