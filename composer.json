@@ -1,24 +1,24 @@
 {
-    "name": "botble/api",
+    "name": "tiryaq/api",
     "description": "API package for Botble CMS",
     "type": "package",
     "license": "MIT",
     "keywords": [
-        "botble",
-        "botble cms",
-        "botble platform",
-        "botble api"
+        "tiryaq",
+        "tiryaq cms",
+        "tiryaq platform",
+        "tiryaq api"
     ],
-    "homepage": "https://botble.com",
+    "homepage": "https://tiryaq.co",
     "authors": [
         {
-            "name": "Botble Technologies",
-            "email": "contact@botble.com"
+            "name": "tiryaq Technologies",
+            "email": "contact@tiryaq.co"
         }
     ],
     "autoload": {
         "psr-4": {
-            "Botble\\Api\\": "src"
+            "Tiryaq\\Api\\": "src"
         }
     },
     "require": {
@@ -32,10 +32,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Botble\\Api\\Providers\\ApiServiceProvider"
+                "Tiryaq\\Api\\Providers\\ApiServiceProvider"
             ],
             "aliases": {
-                "ApiHelper": "Botble\\Api\\Facades\\ApiHelper"
+                "ApiHelper": "Tiryaq\\Api\\Facades\\ApiHelper"
             }
         }
     },
