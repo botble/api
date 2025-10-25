@@ -1,8 +1,8 @@
 <?php
 
-namespace Botble\Api\Http\Requests;
+namespace Tiryaq\Api\Http\Requests;
 
-use Botble\Support\Http\Requests\Request;
+use Tiryaq\Support\Http\Requests\Request;
 
 class CheckEmailRequest extends Request
 {
