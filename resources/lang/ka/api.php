@@ -24,7 +24,6 @@ return [
     'api_usage_curl_example' => 'cURL მოთხოვნის მაგალითი API გასაღებით:',
     'api_usage_javascript_example' => 'JavaScript მოთხოვნის მაგალითი:',
     'api_security_section' => 'უსაფრთხოების პარამეტრები',
-    'api_general_section' => 'ზოგადი პარამეტრები',
     'api_help_section' => 'დახმარება და დოკუმენტაცია',
     'push_notifications_section' => 'Push შეტყობინებები (FCM v1 API)',
     'push_notifications_enabled' => 'Push შეტყობინებების ჩართვა',

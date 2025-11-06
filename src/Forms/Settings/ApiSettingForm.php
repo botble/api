@@ -33,38 +33,26 @@ class ApiSettingForm extends SettingForm
 
     protected function addGeneralSettings(): static
     {
+        $apiEnabled = old('api_enabled', ApiHelper::enabled());
+        $apiKey = ApiHelper::getApiKey();
+        $hasApiKey = ! empty($apiKey);
+
         return $this
-            ->addOpenFieldset('general', ['class' => 'form-fieldset'])
-            ->add(
-                'general_section_title',
-                HtmlField::class,
-                HtmlFieldOption::make()
-                    ->content('<h5 class="mb-3">' . trans('packages/api::api.api_general_section') . '</h5>')
-            )
             ->add(
                 'api_enabled',
                 OnOffCheckboxField::class,
                 OnOffFieldOption::make()
                     ->label(trans('packages/api::api.api_enabled'))
                     ->helperText(trans('packages/api::api.api_enabled_description'))
-                    ->value(ApiHelper::enabled())
+                    ->value($apiEnabled)
                     ->toArray()
             )
-            ->addCloseFieldset('general');
-    }
-
-    protected function addSecuritySettings(): static
-    {
-        $apiKey = ApiHelper::getApiKey();
-        $hasApiKey = ! empty($apiKey);
-
-        return $this
-            ->addOpenFieldset('security', ['class' => 'form-fieldset mt-4'])
+            ->addOpenCollapsible('api_enabled', '1', $apiEnabled)
             ->add(
                 'security_section_title',
                 HtmlField::class,
                 HtmlFieldOption::make()
-                    ->content('<h5 class="mb-3">' . trans('packages/api::api.api_security_section') . '</h5>')
+                    ->content('<h5 class="mb-3 mt-4">' . trans('packages/api::api.api_security_section') . '</h5>')
             )
             ->when($hasApiKey, function ($form) {
                 return $form->add(
@@ -89,8 +77,12 @@ class ApiSettingForm extends SettingForm
                 HtmlField::class,
                 HtmlFieldOption::make()
                     ->content($this->getApiKeyFieldWithActions($apiKey))
-            )
-            ->addCloseFieldset('security');
+            );
+    }
+
+    protected function addSecuritySettings(): static
+    {
+        return $this;
     }
 
     protected function addPushNotificationSettings(): static
@@ -98,14 +90,14 @@ class ApiSettingForm extends SettingForm
         $fcmProjectId = setting('fcm_project_id');
         $fcmServiceAccountPath = setting('fcm_service_account_path');
         $hasFcmConfig = ! empty($fcmProjectId) && ! empty($fcmServiceAccountPath);
+        $pushNotificationsEnabled = old('push_notifications_enabled', setting('push_notifications_enabled', false));
 
         return $this
-            ->addOpenFieldset('push_notifications', ['class' => 'form-fieldset mt-4'])
             ->add(
                 'push_notifications_section_title',
                 HtmlField::class,
                 HtmlFieldOption::make()
-                    ->content('<h5 class="mb-3">' . trans('packages/api::api.push_notifications_section') . '</h5>')
+                    ->content('<h5 class="mb-3 mt-4">' . trans('packages/api::api.push_notifications_section') . '</h5>')
             )
             ->add(
                 'push_notifications_enabled',
@@ -113,9 +105,10 @@ class ApiSettingForm extends SettingForm
                 OnOffFieldOption::make()
                     ->label(trans('packages/api::api.push_notifications_enabled'))
                     ->helperText(trans('packages/api::api.push_notifications_enabled_description'))
-                    ->value(setting('push_notifications_enabled', false))
+                    ->value($pushNotificationsEnabled)
                     ->toArray()
             )
+            ->addOpenCollapsible('push_notifications_enabled', '1', $pushNotificationsEnabled)
             ->add(
                 'fcm_project_id',
                 TextField::class,
@@ -162,18 +155,17 @@ class ApiSettingForm extends SettingForm
                 HtmlFieldOption::make()
                     ->content($this->getSendNotificationForm())
             )
-            ->addCloseFieldset('push_notifications');
+            ->addCloseCollapsible('push_notifications_enabled', '1');
     }
 
     protected function addHelpSection(): static
     {
         return $this
-            ->addOpenFieldset('help', ['class' => 'form-fieldset mt-4'])
             ->add(
                 'help_section_title',
                 HtmlField::class,
                 HtmlFieldOption::make()
-                    ->content('<h5 class="mb-3">' . trans('packages/api::api.api_help_section') . '</h5>')
+                    ->content('<h5 class="mb-3 mt-4">' . trans('packages/api::api.api_help_section') . '</h5>')
             )
             ->add(
                 'api_documentation_info',
@@ -187,7 +179,7 @@ class ApiSettingForm extends SettingForm
                 HtmlFieldOption::make()
                     ->content($this->getUsageExamples())
             )
-            ->addCloseFieldset('help');
+            ->addCloseCollapsible('api_enabled', '1');
     }
 
     protected function getApiKeyActions(): string
