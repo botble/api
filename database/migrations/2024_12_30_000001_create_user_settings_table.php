@@ -13,9 +13,9 @@ return new class () extends Migration {
 
         Schema::create('user_settings', function (Blueprint $table): void {
             $table->id();
-            $table->string('user_type'); // customer, admin, etc.
+            $table->string('user_type', 50); // customer, admin, etc.
             $table->unsignedBigInteger('user_id');
-            $table->string('key'); // setting key like 'biometric_enabled', 'notifications', etc.
+            $table->string('key', 100); // setting key like 'biometric_enabled', 'notifications', etc.
             $table->json('value'); // setting value stored as JSON
             $table->timestamps();
 
