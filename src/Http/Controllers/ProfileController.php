@@ -125,7 +125,7 @@ class ProfileController extends BaseApiController
             $user->save();
 
             return $response
-                ->setData($request->user()->toArray())
+                ->setData(new UserResource($request->user()))
                 ->setMessage(__('Update profile successfully!'));
         } catch (Exception $ex) {
             return $response
