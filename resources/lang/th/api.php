@@ -103,6 +103,8 @@ return [
     'please_enter_notification_message' => 'กรุณาป้อนข้อความการแจ้งเตือน',
     'notification_error_occurred' => 'เกิดข้อผิดพลาดขึ้นขณะส่งการแจ้งเตือน',
     'sent_to_devices' => 'ส่งไปยัง: :count อุปกรณ์',
+    'successfully_sent_to_devices' => 'ส่งสำเร็จไปยัง :count อุปกรณ์',
+    'failed_to_send_to_any_devices' => 'ส่งไปยังอุปกรณ์ล้มเหลว',
     'failed_devices' => 'ล้มเหลว: :count อุปกรณ์',
     'will_send_to_devices' => 'จะส่งไปยังอุปกรณ์ที่ใช้งานอยู่ :total เครื่อง (:android Android, :ios iOS, :customers ลูกค้า)',
     'close' => 'ปิด',

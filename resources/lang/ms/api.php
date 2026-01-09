@@ -103,6 +103,8 @@ return [
     'please_enter_notification_message' => 'Sila masukkan mesej notifikasi.',
     'notification_error_occurred' => 'Ralat berlaku semasa menghantar notifikasi.',
     'sent_to_devices' => 'Dihantar ke: :count peranti',
+    'successfully_sent_to_devices' => 'Berjaya dihantar ke :count peranti',
+    'failed_to_send_to_any_devices' => 'Gagal menghantar ke mana-mana peranti',
     'failed_devices' => 'Gagal: :count peranti',
     'will_send_to_devices' => 'Akan dihantar ke :total peranti aktif (:android Android, :ios iOS, :customers pelanggan)',
     'close' => 'Tutup',

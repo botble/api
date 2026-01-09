@@ -103,6 +103,8 @@ return [
     'please_enter_notification_message' => 'Molimo unesite poruku obaveštenja.',
     'notification_error_occurred' => 'Došlo je do greške prilikom slanja obaveštenja.',
     'sent_to_devices' => 'Poslato na: :count uređaja',
+    'successfully_sent_to_devices' => 'Uspešno poslato na :count uređaja',
+    'failed_to_send_to_any_devices' => 'Slanje na uređaje nije uspelo',
     'failed_devices' => 'Neuspešno: :count uređaja',
     'will_send_to_devices' => 'Biće poslato na :total aktivnih uređaja (:android Android, :ios iOS, :customers kupaca)',
     'close' => 'Zatvori',

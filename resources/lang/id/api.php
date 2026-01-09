@@ -103,6 +103,8 @@ return [
     'please_enter_notification_message' => 'Silakan masukkan pesan notifikasi.',
     'notification_error_occurred' => 'Terjadi kesalahan saat mengirim notifikasi.',
     'sent_to_devices' => 'Terkirim ke: :count perangkat',
+    'successfully_sent_to_devices' => 'Berhasil dikirim ke :count perangkat',
+    'failed_to_send_to_any_devices' => 'Gagal mengirim ke perangkat mana pun',
     'failed_devices' => 'Gagal: :count perangkat',
     'will_send_to_devices' => 'Akan mengirim ke :total perangkat aktif (:android Android, :ios iOS, :customers pelanggan)',
     'close' => 'Tutup',

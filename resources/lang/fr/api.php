@@ -103,6 +103,8 @@ return [
     'please_enter_notification_message' => 'Veuillez entrer un message pour la notification.',
     'notification_error_occurred' => 'Une erreur s\'est produite lors de l\'envoi de la notification.',
     'sent_to_devices' => 'Envoyé à : :count appareils',
+    'successfully_sent_to_devices' => 'Envoyé avec succès à :count appareils',
+    'failed_to_send_to_any_devices' => 'Échec de l\'envoi aux appareils',
     'failed_devices' => 'Échec : :count appareils',
     'will_send_to_devices' => 'Sera envoyé à :total appareils actifs (:android Android, :ios iOS, :customers clients)',
     'close' => 'Fermer',

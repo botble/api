@@ -103,6 +103,8 @@ return [
     'please_enter_notification_message' => 'Please enter a notification message.',
     'notification_error_occurred' => 'An error occurred while sending the notification.',
     'sent_to_devices' => 'Sent to: :count devices',
+    'successfully_sent_to_devices' => 'Successfully sent to :count devices',
+    'failed_to_send_to_any_devices' => 'Failed to send to any devices',
     'failed_devices' => 'Failed: :count devices',
     'will_send_to_devices' => 'Will send to :total active devices (:android Android, :ios iOS, :customers customers)',
     'close' => 'Close',

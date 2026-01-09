@@ -103,6 +103,8 @@ return [
     'please_enter_notification_message' => 'אנא הזן הודעה להתראה.',
     'notification_error_occurred' => 'אירעה שגיאה בעת שליחת ההתראה.',
     'sent_to_devices' => 'נשלח אל: :count מכשירים',
+    'successfully_sent_to_devices' => 'נשלח בהצלחה ל-:count מכשירים',
+    'failed_to_send_to_any_devices' => 'השליחה למכשירים נכשלה',
     'failed_devices' => 'נכשל: :count מכשירים',
     'will_send_to_devices' => 'ישלח ל-:total מכשירים פעילים (:android Android, :ios iOS, :customers לקוחות)',
     'close' => 'סגור',

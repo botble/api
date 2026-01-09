@@ -103,6 +103,8 @@ return [
     'please_enter_notification_message' => '請輸入通知訊息。',
     'notification_error_occurred' => '發送通知時發生錯誤。',
     'sent_to_devices' => '發送到：:count 裝置',
+    'successfully_sent_to_devices' => '成功發送到 :count 台裝置',
+    'failed_to_send_to_any_devices' => '發送到裝置失敗',
     'failed_devices' => '失敗：:count 裝置',
     'will_send_to_devices' => '將發送到 :total 活躍裝置（:android Android，:ios iOS，:customers 客戶）',
     'close' => '關閉',

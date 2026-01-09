@@ -175,8 +175,8 @@ class PushNotificationService
         return [
             'success' => $sentCount > 0,
             'message' => $sentCount > 0
-                ? "Successfully sent to {$sentCount} devices"
-                : 'Failed to send to any devices',
+                ? trans('plugins/api::api.successfully_sent_to_devices', ['count' => $sentCount])
+                : trans('plugins/api::api.failed_to_send_to_any_devices'),
             'sent_count' => $sentCount,
             'failed_count' => $failedCount,
             'removed_invalid_tokens' => count($invalidTokens),

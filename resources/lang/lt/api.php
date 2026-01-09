@@ -103,6 +103,8 @@ return [
     'please_enter_notification_message' => 'Prašome įvesti pranešimo žinutę.',
     'notification_error_occurred' => 'Įvyko klaida siunčiant pranešimą.',
     'sent_to_devices' => 'Išsiųsta į: :count įrenginių',
+    'successfully_sent_to_devices' => 'Sėkmingai išsiųsta į :count įrenginių',
+    'failed_to_send_to_any_devices' => 'Nepavyko išsiųsti į jokį įrenginį',
     'failed_devices' => 'Nepavyko: :count įrenginių',
     'will_send_to_devices' => 'Bus išsiųsta į :total aktyvių įrenginių (:android Android, :ios iOS, :customers klientų)',
     'close' => 'Uždaryti',

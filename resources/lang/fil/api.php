@@ -103,6 +103,8 @@ return [
     'please_enter_notification_message' => 'Mangyaring maglagay ng mensahe ng notification.',
     'notification_error_occurred' => 'May naganap na error habang nagpapadala ng notification.',
     'sent_to_devices' => 'Naipadala sa: :count devices',
+    'successfully_sent_to_devices' => 'Matagumpay na naipadala sa :count devices',
+    'failed_to_send_to_any_devices' => 'Nabigong maipadala sa anumang device',
     'failed_devices' => 'Nabigo: :count devices',
     'will_send_to_devices' => 'Ipapadala sa :total active devices (:android Android, :ios iOS, :customers customers)',
     'close' => 'Isara',

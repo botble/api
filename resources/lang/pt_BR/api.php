@@ -103,6 +103,8 @@ return [
     'please_enter_notification_message' => 'Por favor, digite uma mensagem para a notificação.',
     'notification_error_occurred' => 'Ocorreu um erro ao enviar a notificação.',
     'sent_to_devices' => 'Enviado para: :count dispositivos',
+    'successfully_sent_to_devices' => 'Enviado com sucesso para :count dispositivos',
+    'failed_to_send_to_any_devices' => 'Falha ao enviar para os dispositivos',
     'failed_devices' => 'Falhou: :count dispositivos',
     'will_send_to_devices' => 'Será enviado para :total dispositivos ativos (:android Android, :ios iOS, :customers clientes)',
     'close' => 'Fechar',

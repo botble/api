@@ -103,6 +103,8 @@ return [
     'please_enter_notification_message' => 'Syötä ilmoitusviesti.',
     'notification_error_occurred' => 'Ilmoituksen lähettämisessä tapahtui virhe.',
     'sent_to_devices' => 'Lähetetty: :count laitetta',
+    'successfully_sent_to_devices' => 'Lähetetty onnistuneesti :count laitteelle',
+    'failed_to_send_to_any_devices' => 'Lähettäminen laitteille epäonnistui',
     'failed_devices' => 'Epäonnistui: :count laitetta',
     'will_send_to_devices' => 'Lähetetään :total aktiiviselle laitteelle (:android Android, :ios iOS, :customers asiakasta)',
     'close' => 'Sulje',

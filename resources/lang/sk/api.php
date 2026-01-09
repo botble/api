@@ -103,6 +103,8 @@ return [
     'please_enter_notification_message' => 'Prosím zadajte text notifikácie.',
     'notification_error_occurred' => 'Pri odosielaní notifikácie sa vyskytla chyba.',
     'sent_to_devices' => 'Odoslané do: :count zariadení',
+    'successfully_sent_to_devices' => 'Úspešne odoslané na :count zariadení',
+    'failed_to_send_to_any_devices' => 'Nepodarilo sa odoslať na žiadne zariadenie',
     'failed_devices' => 'Zlyhalo: :count zariadení',
     'will_send_to_devices' => 'Bude odoslané do :total aktívnych zariadení (:android Android, :ios iOS, :customers zákazníkov)',
     'close' => 'Zavrieť',

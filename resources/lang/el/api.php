@@ -103,6 +103,8 @@ return [
     'please_enter_notification_message' => 'Παρακαλώ εισαγάγετε μήνυμα ειδοποίησης.',
     'notification_error_occurred' => 'Παρουσιάστηκε σφάλμα κατά την αποστολή της ειδοποίησης.',
     'sent_to_devices' => 'Στάλθηκε σε: :count συσκευές',
+    'successfully_sent_to_devices' => 'Στάλθηκε επιτυχώς σε :count συσκευές',
+    'failed_to_send_to_any_devices' => 'Αποτυχία αποστολής σε συσκευές',
     'failed_devices' => 'Αποτυχία: :count συσκευές',
     'will_send_to_devices' => 'Θα σταλεί σε :total ενεργές συσκευές (:android Android, :ios iOS, :customers πελάτες)',
     'close' => 'Κλείσιμο',

@@ -103,6 +103,8 @@ return [
     'please_enter_notification_message' => 'Lūdzu, ievadiet paziņojuma ziņojumu.',
     'notification_error_occurred' => 'Nosūtot paziņojumu, radās kļūda.',
     'sent_to_devices' => 'Nosūtīts uz: :count ierīcēm',
+    'successfully_sent_to_devices' => 'Veiksmīgi nosūtīts uz :count ierīcēm',
+    'failed_to_send_to_any_devices' => 'Neizdevās nosūtīt uz ierīcēm',
     'failed_devices' => 'Neizdevās: :count ierīcēm',
     'will_send_to_devices' => 'Tiks nosūtīts uz :total aktīvām ierīcēm (:android Android, :ios iOS, :customers klienti)',
     'close' => 'Aizvērt',

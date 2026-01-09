@@ -103,6 +103,8 @@ return [
     'please_enter_notification_message' => 'Будь ласка, введіть повідомлення сповіщення.',
     'notification_error_occurred' => 'Сталася помилка при надсиланні сповіщення.',
     'sent_to_devices' => 'Надіслано на: :count пристроїв',
+    'successfully_sent_to_devices' => 'Успішно надіслано на :count пристроїв',
+    'failed_to_send_to_any_devices' => 'Не вдалося надіслати на жоден пристрій',
     'failed_devices' => 'Не вдалося: :count пристроїв',
     'will_send_to_devices' => 'Буде надіслано на :total активних пристроїв (:android Android, :ios iOS, :customers клієнти)',
     'close' => 'Закрити',
