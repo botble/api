@@ -92,6 +92,18 @@ return [
     'fcm_security_note_title' => 'Güvenlik Notu:',
     'fcm_security_note' => 'Hizmet hesabınızın JSON dosyasını güvenli tutun ve asla sürüm kontrolüne göndermeyin. Sunucunuzda güvenli bir konumda saklayın.',
 
+    'api_key_enabled_status' => 'API anahtarı koruması <strong>etkin</strong>. Tüm istekler X-API-KEY başlığını gerektiriyor.',
+    'api_key_disabled_status' => 'API anahtarı koruması <strong>devre dışı</strong>. Herhangi bir istemci API anahtarı olmadan API\'ye erişebilir.',
+    'api_security_section_description' => 'API anahtarı, sunucunuz ve istemciler (örneğin mobil uygulamanız) arasında paylaşılan bir sır olarak çalışır. Bilinmeyen istemcilerin API\'ye erişmesini engeller. Kullanıcı kimliği hala Sanctum belirteçleri tarafından ayrı olarak işlenir.',
+    'push_notifications_section_description' => 'Firebase Cloud Messaging aracılığıyla mobil uygulama kullanıcılarınıza push bildirimleri gönderin. Bu, API\'nize cihaz belirteçlerini kaydeden bir mobil uygulama gerektirir.',
+    'send_custom_notification_description' => 'Kayıtlı mobil uygulama kullanıcılarına push bildirimi gönderin. Bildirimler, belirteçlerini kaydettirmiş cihazlara Firebase Cloud Messaging aracılığıyla iletilir.',
+    'no_device_tokens' => 'Etkin cihaz belirteci bulunamadı',
+    'no_device_tokens_description' => 'Cihaz belirteçleri, kullanıcılar mobil uygulamanızı açtığında otomatik olarak kaydedilir. Bu mesaj, henüz API\'nize bağlanan bir mobil uygulamanın olmadığı anlamına gelir. Uygulamanız dağıtıldıktan ve kullanıcılar açtıktan sonra, cihaz belirteçleri burada görünecektir.',
+    'device_tokens_stats' => 'Etkin Cihaz Belirteçleri',
+    'fcm_ready' => 'Firebase yapılandırıldı. Push bildirimleri kullanıma hazır.',
+    'fcm_not_configured' => 'Firebase tam olarak yapılandırılmadı. Push bildirimlerini etkinleştirmek için yukarıdaki kurulumu tamamlayın.',
+    'service_account_file' => 'Hizmet hesabı dosyası:',
+
     // Additional JavaScript translations
     'your_api_key_here' => 'your-api-key-here',
     'file_size_too_large' => 'Dosya boyutu 2MB\'tan küçük olmalıdır.',

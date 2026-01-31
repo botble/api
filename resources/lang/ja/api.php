@@ -92,6 +92,18 @@ return [
     'fcm_security_note_title' => 'セキュリティ注意事項：',
     'fcm_security_note' => 'サービスアカウントJSONファイルを安全に保管し、バージョン管理にコミットしないでください。サーバーの安全な場所に保存してください。',
 
+    'api_key_enabled_status' => 'APIキー保護が<strong>有効</strong>になっています。すべてのリクエストにX-API-KEYヘッダーが必要です。',
+    'api_key_disabled_status' => 'APIキー保護が<strong>無効</strong>になっています。どのクライアントもAPIキーなしでAPIにアクセスできます。',
+    'api_security_section_description' => 'APIキーは、サーバーとクライアント(モバイルアプリなど)の間の共有シークレットとして機能します。不明なクライアントがAPIにアクセスするのを防ぎます。ユーザーIDは引き続きSanctumトークンによって個別に処理されます。',
+    'push_notifications_section_description' => 'Firebase Cloud Messagingを介してモバイルアプリユーザーにプッシュ通知を送信します。これには、APIにデバイストークンを登録するモバイルアプリが必要です。',
+    'send_custom_notification_description' => '登録済みのモバイルアプリユーザーにプッシュ通知を送信します。通知は、トークンを登録したデバイスにFirebase Cloud Messagingを介して配信されます。',
+    'no_device_tokens' => 'アクティブなデバイストークンが見つかりません',
+    'no_device_tokens_description' => 'デバイストークンは、ユーザーがモバイルアプリを開くと自動的に登録されます。このメッセージは、まだモバイルアプリがAPIに接続していないことを意味します。アプリがデプロイされ、ユーザーが開くと、デバイストークンがここに表示されます。',
+    'device_tokens_stats' => 'アクティブなデバイストークン',
+    'fcm_ready' => 'Firebaseが設定されました。プッシュ通知を使用する準備ができました。',
+    'fcm_not_configured' => 'Firebaseが完全に設定されていません。プッシュ通知を有効にするには、上記の設定を完了してください。',
+    'service_account_file' => 'サービスアカウントファイル:',
+
     // Additional JavaScript translations
     'your_api_key_here' => 'your-api-key-here',
     'file_size_too_large' => 'ファイルサイズは2MB未満である必要があります。',

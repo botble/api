@@ -1,5 +1,6 @@
 <div class="mt-4 send-notification-section">
-    <h6 class="mb-3">{{ trans('packages/api::api.send_custom_notification') }}</h6>
+    <h6 class="mb-2">{{ trans('packages/api::api.send_custom_notification') }}</h6>
+    <p class="text-muted small mb-3">{{ trans('packages/api::api.send_custom_notification_description') }}</p>
 
     <div class="card border-0">
         <div class="card-body">

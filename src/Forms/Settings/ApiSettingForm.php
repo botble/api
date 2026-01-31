@@ -52,26 +52,8 @@ class ApiSettingForm extends SettingForm
                 'security_section_title',
                 HtmlField::class,
                 HtmlFieldOption::make()
-                    ->content('<h5 class="mb-3 mt-4">' . trans('packages/api::api.api_security_section') . '</h5>')
+                    ->content('<h5 class="mb-2 mt-4">' . trans('packages/api::api.api_security_section') . '</h5><p class="text-muted small mb-3">' . trans('packages/api::api.api_security_section_description') . '</p>')
             )
-            ->when($hasApiKey, function ($form) {
-                return $form->add(
-                    'api_key_status',
-                    AlertField::class,
-                    AlertFieldOption::make()
-                        ->type('success')
-                        ->content('<strong>API Key Protection:</strong> Enabled. All API requests require the X-API-KEY header.')
-                );
-            })
-            ->when(! $hasApiKey, function ($form) {
-                return $form->add(
-                    'api_key_status',
-                    AlertField::class,
-                    AlertFieldOption::make()
-                        ->type('warning')
-                        ->content('<strong>API Key Protection:</strong> Disabled. API endpoints are publicly accessible.')
-                );
-            })
             ->add(
                 'api_key_wrapper',
                 HtmlField::class,
@@ -97,7 +79,7 @@ class ApiSettingForm extends SettingForm
                 'push_notifications_section_title',
                 HtmlField::class,
                 HtmlFieldOption::make()
-                    ->content('<h5 class="mb-3 mt-4">' . trans('packages/api::api.push_notifications_section') . '</h5>')
+                    ->content('<h5 class="mb-2 mt-4">' . trans('packages/api::api.push_notifications_section') . '</h5><p class="text-muted small mb-3">' . trans('packages/api::api.push_notifications_section_description') . '</p>')
             )
             ->add(
                 'push_notifications_enabled',
@@ -131,7 +113,7 @@ class ApiSettingForm extends SettingForm
                     AlertField::class,
                     AlertFieldOption::make()
                         ->type('success')
-                        ->content('<strong>FCM Configuration:</strong> Project ID and service account are configured. Push notifications are ready to use.')
+                        ->content(trans('packages/api::api.fcm_ready'))
                 );
             })
             ->when(! $hasFcmConfig, function ($form) {
@@ -140,7 +122,7 @@ class ApiSettingForm extends SettingForm
                     AlertField::class,
                     AlertFieldOption::make()
                         ->type('warning')
-                        ->content('<strong>FCM Configuration:</strong> Project ID or service account is not configured. Push notifications will not work.')
+                        ->content(trans('packages/api::api.fcm_not_configured'))
                 );
             })
             ->add(

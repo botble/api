@@ -92,6 +92,18 @@ return [
     'fcm_security_note_title' => 'सुरक्षा नोट:',
     'fcm_security_note' => 'अपनी सर्विस अकाउंट JSON फ़ाइल को सुरक्षित रखें और इसे कभी भी वर्शन कंट्रोल में कमिट न करें। इसे अपने सर्वर पर एक सुरक्षित स्थान में संग्रहीत करें।',
 
+    'api_key_enabled_status' => 'API key protection is <strong>enabled</strong>. All requests require the X-API-KEY header.',
+    'api_key_disabled_status' => 'API key protection is <strong>disabled</strong>. Any client can access the API without an API key.',
+    'api_security_section_description' => 'The API key acts as a shared secret between your server and clients (e.g., your mobile app). It prevents unknown clients from accessing the API. User identity is still handled separately by Sanctum tokens.',
+    'push_notifications_section_description' => 'Send push notifications to your mobile app users via Firebase Cloud Messaging. This requires a mobile app that registers device tokens with your API.',
+    'send_custom_notification_description' => 'Send a push notification to registered mobile app users. Notifications are delivered via Firebase Cloud Messaging to devices that have registered their tokens.',
+    'no_device_tokens' => 'No active device tokens found',
+    'no_device_tokens_description' => 'Device tokens are registered automatically when users open your mobile app. This message means no mobile app has connected to your API yet. Once your app is deployed and users open it, device tokens will appear here.',
+    'device_tokens_stats' => 'Active Device Tokens',
+    'fcm_ready' => 'Firebase is configured. Push notifications are ready to use.',
+    'fcm_not_configured' => 'Firebase is not fully configured. Complete the setup above to enable push notifications.',
+    'service_account_file' => 'Service account file:',
+
     // Additional JavaScript translations
     'your_api_key_here' => 'your-api-key-here',
     'file_size_too_large' => 'फ़ाइल का आकार 2MB से कम होना चाहिए।',

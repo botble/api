@@ -92,6 +92,18 @@ return [
     'fcm_security_note_title' => '安全提示：',
     'fcm_security_note' => '保護好你的服務帳戶JSON檔案，切勿將其提交到版本控制。將其儲存在伺服器的安全位置。',
 
+    'api_key_enabled_status' => 'API 密钥保护已<strong>启用</strong>。所有请求都需要 X-API-KEY 标头。',
+    'api_key_disabled_status' => 'API 密钥保护已<strong>禁用</strong>。任何客户端都可以在没有 API 密钥的情况下访问 API。',
+    'api_security_section_description' => 'API 密钥充当服务器和客户端(例如您的移动应用)之间的共享秘密。它可防止未知客户端访问 API。用户身份仍由 Sanctum 令牌单独处理。',
+    'push_notifications_section_description' => '通过 Firebase Cloud Messaging 向您的移动应用用户发送推送通知。这需要一个向您的 API 注册设备令牌的移动应用。',
+    'send_custom_notification_description' => '向已注册的移动应用用户发送推送通知。通知通过 Firebase Cloud Messaging 传递到已注册其令牌的设备。',
+    'no_device_tokens' => '未找到活动设备令牌',
+    'no_device_tokens_description' => '当用户打开您的移动应用时,设备令牌会自动注册。此消息表示尚未有移动应用连接到您的 API。一旦您的应用部署并且用户打开它,设备令牌将显示在此处。',
+    'device_tokens_stats' => '活动设备令牌',
+    'fcm_ready' => 'Firebase 已配置。推送通知已准备就绪。',
+    'fcm_not_configured' => 'Firebase 未完全配置。完成上述设置以启用推送通知。',
+    'service_account_file' => '服务帐户文件:',
+
     // Additional JavaScript translations
     'your_api_key_here' => 'your-api-key-here',
     'file_size_too_large' => '檔案大小必須小於2MB。',

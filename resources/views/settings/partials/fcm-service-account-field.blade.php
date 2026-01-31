@@ -39,7 +39,7 @@
         <div class="mt-2" id="service-account-status">
             <small class="text-success">
                 <x-core::icon name="ti ti-file-check" class="me-1" />
-                Service account file: <strong>{{ basename($fcmServiceAccountPath) }}</strong>
+                {{ trans('packages/api::api.service_account_file') }} <strong>{{ basename($fcmServiceAccountPath) }}</strong>
                 <span class="text-muted">({{ trans('packages/api::api.uploaded_at') }}: {{ file_exists(storage_path('app/' . $fcmServiceAccountPath)) ? date('Y-m-d H:i:s', filemtime(storage_path('app/' . $fcmServiceAccountPath))) : 'Unknown' }})</span>
             </small>
         </div>
@@ -47,7 +47,7 @@
         <div class="mt-2" id="service-account-status">
             <small class="text-warning">
                 <x-core::icon name="ti ti-file-x" class="me-1" />
-                Service account file is <strong>not uploaded</strong>. {{ trans('packages/api::api.upload_json_file') }}
+                {!! trans('packages/api::api.service_account_not_uploaded') !!}
             </small>
         </div>
     @endif

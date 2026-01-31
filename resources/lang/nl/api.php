@@ -92,6 +92,18 @@ return [
     'fcm_security_note_title' => 'Beveiligingsnotitie:',
     'fcm_security_note' => 'Houd uw service account JSON-bestand veilig en commit het nooit naar versiebeheer. Bewaar het op een veilige locatie op uw server.',
 
+    'api_key_enabled_status' => 'API-sleutelbeveiliging is <strong>ingeschakeld</strong>. Alle verzoeken vereisen de X-API-KEY-header.',
+    'api_key_disabled_status' => 'API-sleutelbeveiliging is <strong>uitgeschakeld</strong>. Elke client kan de API openen zonder een API-sleutel.',
+    'api_security_section_description' => 'De API-sleutel fungeert als een gedeeld geheim tussen uw server en clients (bijv. uw mobiele app). Het voorkomt dat onbekende clients toegang krijgen tot de API. Gebruikersidentiteit wordt nog steeds afzonderlijk afgehandeld door Sanctum-tokens.',
+    'push_notifications_section_description' => 'Stuur pushnotificaties naar uw mobiele app-gebruikers via Firebase Cloud Messaging. Hiervoor is een mobiele app vereist die apparaattokens registreert bij uw API.',
+    'send_custom_notification_description' => 'Stuur een pushnotificatie naar geregistreerde mobiele app-gebruikers. Notificaties worden afgeleverd via Firebase Cloud Messaging aan apparaten die hun tokens hebben geregistreerd.',
+    'no_device_tokens' => 'Geen actieve apparaattokens gevonden',
+    'no_device_tokens_description' => 'Apparaattokens worden automatisch geregistreerd wanneer gebruikers uw mobiele app openen. Dit bericht betekent dat er nog geen mobiele app is verbonden met uw API. Zodra uw app is geïmplementeerd en gebruikers deze openen, verschijnen apparaattokens hier.',
+    'device_tokens_stats' => 'Actieve apparaattokens',
+    'fcm_ready' => 'Firebase is geconfigureerd. Pushnotificaties zijn klaar voor gebruik.',
+    'fcm_not_configured' => 'Firebase is niet volledig geconfigureerd. Voltooi de bovenstaande setup om pushnotificaties in te schakelen.',
+    'service_account_file' => 'Serviceaccountbestand:',
+
     // Additional JavaScript translations
     'your_api_key_here' => 'your-api-key-here',
     'file_size_too_large' => 'Bestandsgrootte moet kleiner zijn dan 2MB.',

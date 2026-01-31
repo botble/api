@@ -29,14 +29,14 @@
         <div class="mt-2">
             <small class="text-success">
                 <x-core::icon name="ti ti-shield-check" class="me-1" />
-                API key protection is <strong>enabled</strong>. All requests require the X-API-KEY header.
+                {!! trans('packages/api::api.api_key_enabled_status') !!}
             </small>
         </div>
     @else
         <div class="mt-2">
             <small class="text-warning">
                 <x-core::icon name="ti ti-shield-x" class="me-1" />
-                API key protection is <strong>disabled</strong>. Endpoints are publicly accessible.
+                {!! trans('packages/api::api.api_key_disabled_status') !!}
             </small>
         </div>
     @endif

@@ -92,6 +92,18 @@ return [
     'fcm_security_note_title' => '보안 참고사항:',
     'fcm_security_note' => '서비스 계정 JSON 파일을 안전하게 보관하고 절대 버전 관리 시스템에 커밋하지 마세요. 서버의 안전한 위치에 저장하세요.',
 
+    'api_key_enabled_status' => 'API 키 보호가 <strong>활성화</strong>되었습니다. 모든 요청에 X-API-KEY 헤더가 필요합니다.',
+    'api_key_disabled_status' => 'API 키 보호가 <strong>비활성화</strong>되었습니다. 모든 클라이언트가 API 키 없이 API에 액세스할 수 있습니다.',
+    'api_security_section_description' => 'API 키는 서버와 클라이언트(예: 모바일 앱) 간의 공유 비밀로 작동합니다. 알 수 없는 클라이언트가 API에 액세스하는 것을 방지합니다. 사용자 ID는 여전히 Sanctum 토큰에 의해 별도로 처리됩니다.',
+    'push_notifications_section_description' => 'Firebase Cloud Messaging을 통해 모바일 앱 사용자에게 푸시 알림을 보냅니다. 이를 위해서는 API에 장치 토큰을 등록하는 모바일 앱이 필요합니다.',
+    'send_custom_notification_description' => '등록된 모바일 앱 사용자에게 푸시 알림을 보냅니다. 알림은 토큰을 등록한 기기에 Firebase Cloud Messaging을 통해 전달됩니다.',
+    'no_device_tokens' => '활성 장치 토큰을 찾을 수 없습니다',
+    'no_device_tokens_description' => '사용자가 모바일 앱을 열면 장치 토큰이 자동으로 등록됩니다. 이 메시지는 아직 API에 연결된 모바일 앱이 없음을 의미합니다. 앱이 배포되고 사용자가 앱을 열면 장치 토큰이 여기에 표시됩니다.',
+    'device_tokens_stats' => '활성 장치 토큰',
+    'fcm_ready' => 'Firebase가 구성되었습니다. 푸시 알림을 사용할 준비가 되었습니다.',
+    'fcm_not_configured' => 'Firebase가 완전히 구성되지 않았습니다. 푸시 알림을 활성화하려면 위의 설정을 완료하세요.',
+    'service_account_file' => '서비스 계정 파일:',
+
     // Additional JavaScript translations
     'your_api_key_here' => 'your-api-key-here',
     'file_size_too_large' => '파일 크기는 2MB 미만이어야 합니다.',
