@@ -103,8 +103,6 @@ return [
     'please_enter_notification_message' => 'Va rugam sa introduceti un mesaj pentru notificare.',
     'notification_error_occurred' => 'A aparut o eroare la trimiterea notificarii.',
     'sent_to_devices' => 'Trimis catre: :count dispozitive',
-    'successfully_sent_to_devices' => 'Trimis cu succes catre :count dispozitive',
-    'failed_to_send_to_any_devices' => 'Trimiterea catre dispozitive a esuat',
     'failed_devices' => 'Esuat: :count dispozitive',
     'will_send_to_devices' => 'Se va trimite catre :total dispozitive active (:android Android, :ios iOS, :customers clienti)',
     'close' => 'Inchide',

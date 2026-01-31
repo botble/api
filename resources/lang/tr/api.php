@@ -103,8 +103,6 @@ return [
     'please_enter_notification_message' => 'Lütfen bir bildirim mesajı girin.',
     'notification_error_occurred' => 'Bildirim gönderilirken bir hata oluştu.',
     'sent_to_devices' => 'Şuraya gönderildi: :count cihazlar',
-    'successfully_sent_to_devices' => ':count cihaza başarıyla gönderildi',
-    'failed_to_send_to_any_devices' => 'Cihazlara gönderilemedi',
     'failed_devices' => 'Başarısız: :count aygıtlar',
     'will_send_to_devices' => 'Şuna gönderilecek: :total aktif cihazlar (:android Android, :ios iOS, :customers müşteriler)',
     'close' => 'Kapat',

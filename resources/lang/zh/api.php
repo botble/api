@@ -103,8 +103,6 @@ return [
     'please_enter_notification_message' => '请输入通知消息。',
     'notification_error_occurred' => '发送通知时发生错误。',
     'sent_to_devices' => '发送到：:count 设备',
-    'successfully_sent_to_devices' => '成功发送到 :count 台设备',
-    'failed_to_send_to_any_devices' => '发送到设备失败',
     'failed_devices' => '失败：:count 设备',
     'will_send_to_devices' => '将发送到 :total 活跃设备（:android Android，:ios iOS，:customers 客户）',
     'close' => '关闭',

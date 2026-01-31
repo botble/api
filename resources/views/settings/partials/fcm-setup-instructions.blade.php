@@ -1,5 +1,5 @@
 <div class="mt-3">
-    <div class="card border-0 bg-white">
+    <div class="card border-0">
         <div class="card-body">
             <h6 class="mb-3">
                 <x-core::icon name="ti ti-info-circle" class="me-2" />

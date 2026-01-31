@@ -103,8 +103,6 @@ return [
     'please_enter_notification_message' => 'Vennligst skriv inn en varselmelding.',
     'notification_error_occurred' => 'En feil oppstod ved sending av varselet.',
     'sent_to_devices' => 'Sendt til: :count enheter',
-    'successfully_sent_to_devices' => 'Sendt til :count enheter',
-    'failed_to_send_to_any_devices' => 'Kunne ikke sende til noen enheter',
     'failed_devices' => 'Mislyktes: :count enheter',
     'will_send_to_devices' => 'Vil sende til :total aktive enheter (:android Android, :ios iOS, :customers kunder)',
     'close' => 'Lukk',

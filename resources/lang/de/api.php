@@ -103,8 +103,6 @@ return [
     'please_enter_notification_message' => 'Bitte geben Sie eine Benachrichtigungsnachricht ein.',
     'notification_error_occurred' => 'Beim Senden der Benachrichtigung ist ein Fehler aufgetreten.',
     'sent_to_devices' => 'Gesendet an: :count Geräte',
-    'successfully_sent_to_devices' => 'Erfolgreich an :count Geräte gesendet',
-    'failed_to_send_to_any_devices' => 'Senden an Geräte fehlgeschlagen',
     'failed_devices' => 'Fehlgeschlagen: :count Geräte',
     'will_send_to_devices' => 'Wird an :total aktive Geräte gesendet (:android Android, :ios iOS, :customers Kunden)',
     'close' => 'Schließen',

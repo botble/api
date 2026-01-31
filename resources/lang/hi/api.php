@@ -103,8 +103,6 @@ return [
     'please_enter_notification_message' => 'कृपया एक नोटिफिकेशन संदेश दर्ज करें।',
     'notification_error_occurred' => 'नोटिफिकेशन भेजते समय एक त्रुटि हुई।',
     'sent_to_devices' => 'भेजा गया: :count डिवाइस',
-    'successfully_sent_to_devices' => ':count डिवाइस को सफलतापूर्वक भेजा गया',
-    'failed_to_send_to_any_devices' => 'किसी भी डिवाइस पर भेजने में विफल',
     'failed_devices' => 'विफल: :count डिवाइस',
     'will_send_to_devices' => ':total सक्रिय डिवाइसों को भेजा जाएगा (:android Android, :ios iOS, :customers ग्राहक)',
     'close' => 'बंद करें',

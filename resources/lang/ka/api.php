@@ -98,8 +98,6 @@ return [
     'please_enter_notification_message' => 'გთხოვთ შეიტანოთ შეტყობინების ტექსტი.',
     'notification_error_occurred' => 'შეცდომა მოხდა შეტყობინების გაგზავნისას.',
     'sent_to_devices' => 'გაიგზავნა: :count მოწყობილობაზე',
-    'successfully_sent_to_devices' => 'წარმატებით გაიგზავნა :count მოწყობილობაზე',
-    'failed_to_send_to_any_devices' => 'მოწყობილობებზე გაგზავნა ვერ მოხერხდა',
     'failed_devices' => 'ვერ მოხერხდა: :count მოწყობილობაზე',
     'will_send_to_devices' => 'გაიგზავნება :total აქტიურ მოწყობილობაზე (:android Android, :ios iOS, :customers კლიენტები)',
     'close' => 'დახურვა',

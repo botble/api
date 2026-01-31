@@ -103,8 +103,6 @@ return [
     'please_enter_notification_message' => 'Indtast venligst en notifikationsbesked.',
     'notification_error_occurred' => 'Der opstod en fejl under afsendelse af notifikationen.',
     'sent_to_devices' => 'Sendt til: :count enheder',
-    'successfully_sent_to_devices' => 'Sendt succesfuldt til :count enheder',
-    'failed_to_send_to_any_devices' => 'Kunne ikke sende til nogen enheder',
     'failed_devices' => 'Mislykkedes: :count enheder',
     'will_send_to_devices' => 'Sender til :total aktive enheder (:android Android, :ios iOS, :customers kunder)',
     'close' => 'Luk',

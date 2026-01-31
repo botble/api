@@ -103,8 +103,6 @@ return [
     'please_enter_notification_message' => 'Kérjük, adja meg az értesítés üzenetét.',
     'notification_error_occurred' => 'Hiba történt az értesítés küldése közben.',
     'sent_to_devices' => 'Elküldve: :count eszköz',
-    'successfully_sent_to_devices' => 'Sikeresen elküldve :count eszközre',
-    'failed_to_send_to_any_devices' => 'Nem sikerült elküldeni az eszközökre',
     'failed_devices' => 'Sikertelen: :count eszköz',
     'will_send_to_devices' => ':total aktív eszközre kerül kiküldésre (:android Android, :ios iOS, :customers ügyfél)',
     'close' => 'Bezárás',

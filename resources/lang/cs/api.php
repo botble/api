@@ -103,8 +103,6 @@ return [
     'please_enter_notification_message' => 'Prosím zadejte zprávu notifikace.',
     'notification_error_occurred' => 'Při odesílání notifikace došlo k chybě.',
     'sent_to_devices' => 'Odesláno na: :count zařízení',
-    'successfully_sent_to_devices' => 'Úspěšně odesláno na :count zařízení',
-    'failed_to_send_to_any_devices' => 'Nepodařilo se odeslat na žádné zařízení',
     'failed_devices' => 'Selhalo: :count zařízení',
     'will_send_to_devices' => 'Bude odesláno na :total aktivních zařízení (:android Android, :ios iOS, :customers zákazníků)',
     'close' => 'Zavřít',

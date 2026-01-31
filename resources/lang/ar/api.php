@@ -103,8 +103,6 @@ return [
     'please_enter_notification_message' => 'يرجى إدخال رسالة الإشعار.',
     'notification_error_occurred' => 'حدث خطأ أثناء إرسال الإشعار.',
     'sent_to_devices' => 'تم الإرسال إلى: :count جهاز',
-    'successfully_sent_to_devices' => 'تم الإرسال بنجاح إلى :count جهاز',
-    'failed_to_send_to_any_devices' => 'فشل الإرسال إلى أي جهاز',
     'failed_devices' => 'فشل: :count جهاز',
     'will_send_to_devices' => 'سيتم الإرسال إلى :total جهاز نشط (:android Android، :ios iOS، :customers عملاء)',
     'close' => 'إغلاق',

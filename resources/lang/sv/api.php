@@ -103,8 +103,6 @@ return [
     'please_enter_notification_message' => 'Vänligen ange ett notismeddelande.',
     'notification_error_occurred' => 'Ett fel inträffade när notisen skickades.',
     'sent_to_devices' => 'Skickat till: :count enheter',
-    'successfully_sent_to_devices' => 'Skickat framgångsrikt till :count enheter',
-    'failed_to_send_to_any_devices' => 'Misslyckades att skicka till enheter',
     'failed_devices' => 'Misslyckades: :count enheter',
     'will_send_to_devices' => 'Kommer att skicka till :total aktiva enheter (:android Android, :ios iOS, :customers kunder)',
     'close' => 'Stäng',

@@ -103,8 +103,6 @@ return [
     'please_enter_notification_message' => 'Palun sisestage teavituse sõnum.',
     'notification_error_occurred' => 'Teavituse saatmisel ilmnes viga.',
     'sent_to_devices' => 'Saadetud: :count seadmele',
-    'successfully_sent_to_devices' => 'Edukalt saadetud :count seadmele',
-    'failed_to_send_to_any_devices' => 'Seadmetele saatmine ebaõnnestus',
     'failed_devices' => 'Ebaõnnestunud: :count seadmel',
     'will_send_to_devices' => 'Saadetakse :total aktiivsele seadmele (:android Android, :ios iOS, :customers klienti)',
     'close' => 'Sulge',

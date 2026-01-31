@@ -103,8 +103,6 @@ return [
     'please_enter_notification_message' => 'Vui lòng nhập tin nhắn thông báo.',
     'notification_error_occurred' => 'Đã xảy ra lỗi khi gửi thông báo.',
     'sent_to_devices' => 'Đã gửi đến: :count thiết bị',
-    'successfully_sent_to_devices' => 'Đã gửi thành công đến :count thiết bị',
-    'failed_to_send_to_any_devices' => 'Không thể gửi đến bất kỳ thiết bị nào',
     'failed_devices' => 'Thất bại: :count thiết bị',
     'will_send_to_devices' => 'Sẽ gửi đến :total thiết bị hoạt động (:android Android, :ios iOS, :customers khách hàng)',
     'close' => 'Đóng',

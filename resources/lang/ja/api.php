@@ -103,8 +103,6 @@ return [
     'please_enter_notification_message' => '通知メッセージを入力してください。',
     'notification_error_occurred' => '通知の送信中にエラーが発生しました。',
     'sent_to_devices' => ':count台のデバイスに送信されました',
-    'successfully_sent_to_devices' => ':count台のデバイスに正常に送信されました',
-    'failed_to_send_to_any_devices' => 'デバイスへの送信に失敗しました',
     'failed_devices' => ':count台のデバイスで失敗',
     'will_send_to_devices' => ':total台のアクティブデバイスに送信されます（:android Android、:ios iOS、:customers 顧客）',
     'close' => '閉じる',

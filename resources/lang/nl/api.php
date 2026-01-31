@@ -103,8 +103,6 @@ return [
     'please_enter_notification_message' => 'Voer een meldingsbericht in.',
     'notification_error_occurred' => 'Er is een fout opgetreden bij het verzenden van de melding.',
     'sent_to_devices' => 'Verzonden naar: :count apparaten',
-    'successfully_sent_to_devices' => 'Succesvol verzonden naar :count apparaten',
-    'failed_to_send_to_any_devices' => 'Verzenden naar apparaten mislukt',
     'failed_devices' => 'Mislukt: :count apparaten',
     'will_send_to_devices' => 'Wordt verzonden naar :total actieve apparaten (:android Android, :ios iOS, :customers klanten)',
     'close' => 'Sluiten',

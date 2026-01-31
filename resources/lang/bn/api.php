@@ -103,8 +103,6 @@ return [
     'please_enter_notification_message' => 'অনুগ্রহ করে একটি নোটিফিকেশন বার্তা লিখুন।',
     'notification_error_occurred' => 'নোটিফিকেশন পাঠানোর সময় একটি ত্রুটি ঘটেছে।',
     'sent_to_devices' => 'পাঠানো হয়েছে: :count ডিভাইসে',
-    'successfully_sent_to_devices' => ':count ডিভাইসে সফলভাবে পাঠানো হয়েছে',
-    'failed_to_send_to_any_devices' => 'কোন ডিভাইসে পাঠাতে ব্যর্থ',
     'failed_devices' => 'ব্যর্থ: :count ডিভাইস',
     'will_send_to_devices' => ':total সক্রিয় ডিভাইসে পাঠানো হবে (:android Android, :ios iOS, :customers কাস্টমার)',
     'close' => 'বন্ধ করুন',

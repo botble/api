@@ -103,8 +103,6 @@ return [
     'please_enter_notification_message' => '알림 메시지를 입력하세요.',
     'notification_error_occurred' => '알림 전송 중 오류가 발생했습니다.',
     'sent_to_devices' => '전송됨: :count개 기기',
-    'successfully_sent_to_devices' => ':count개 기기에 성공적으로 전송됨',
-    'failed_to_send_to_any_devices' => '기기로 전송 실패',
     'failed_devices' => '실패: :count개 기기',
     'will_send_to_devices' => '총 :total개 활성 기기로 전송됩니다 (Android :android개, iOS :ios개, 고객 :customers명)',
     'close' => '닫기',

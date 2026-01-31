@@ -103,8 +103,6 @@ return [
     'please_enter_notification_message' => 'Proszę wprowadzić treść powiadomienia.',
     'notification_error_occurred' => 'Wystąpił błąd podczas wysyłania powiadomienia.',
     'sent_to_devices' => 'Wysłano do: :count urządzeń',
-    'successfully_sent_to_devices' => 'Pomyślnie wysłano do :count urządzeń',
-    'failed_to_send_to_any_devices' => 'Nie udało się wysłać do żadnego urządzenia',
     'failed_devices' => 'Niepowodzenie: :count urządzeń',
     'will_send_to_devices' => 'Zostanie wysłane do :total aktywnych urządzeń (:android Android, :ios iOS, :customers klientów)',
     'close' => 'Zamknij',

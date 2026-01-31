@@ -103,8 +103,6 @@ return [
     'please_enter_notification_message' => 'Пожалуйста, введите сообщение уведомления.',
     'notification_error_occurred' => 'Произошла ошибка при отправке уведомления.',
     'sent_to_devices' => 'Отправлено на: :count устройств',
-    'successfully_sent_to_devices' => 'Успешно отправлено на :count устройств',
-    'failed_to_send_to_any_devices' => 'Не удалось отправить на устройства',
     'failed_devices' => 'Не удалось: :count устройств',
     'will_send_to_devices' => 'Будет отправлено на :total активных устройств (:android Android, :ios iOS, :customers клиенты)',
     'close' => 'Закрыть',
