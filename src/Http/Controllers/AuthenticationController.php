@@ -68,10 +68,6 @@ class AuthenticationController extends BaseApiController
             $token = Hash::make(Str::random(32));
 
             $user->email_verify_token = $token;
-
-            /**
-             * @var User $user
-             */
             $user->sendEmailVerificationNotification();
         } else {
             $user->confirmed_at = Carbon::now();
@@ -109,6 +105,15 @@ class AuthenticationController extends BaseApiController
                 ])
         ) {
             $user = $request->user(ApiHelper::guard());
+
+            if (empty($user->confirmed_at)) {
+                Auth::guard(ApiHelper::guard())->logout();
+
+                return $response
+                    ->setError()
+                    ->setCode(422)
+                    ->setMessage(__('Your email address is not verified. Please check your email and verify your account before logging in.'));
+            }
 
             $token = $user->createToken($request->input('token_name', 'Personal Access Token'));
 

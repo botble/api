@@ -15,6 +15,7 @@ Route::group([
     Route::post('password/forgot', 'ForgotPasswordController@sendResetLinkEmail');
 
     Route::post('resend-verify-account-email', 'VerificationController@resend');
+    Route::post('resend-email-verification', 'VerificationController@resend');
 
     // Device token management (public endpoints)
     Route::post('device-tokens', 'DeviceTokenController@store');
