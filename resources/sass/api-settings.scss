@@ -36,6 +36,12 @@
                 border-color: #dee2e6;
                 box-shadow: none;
             }
+
+            [data-bs-theme='dark'] & {
+                background-color: #1a2234;
+                border-color: #2c3e57;
+                color: #a8b3c5;
+            }
         }
     }
 }
